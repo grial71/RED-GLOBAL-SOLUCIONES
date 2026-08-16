@@ -1,0 +1,90 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <linearGradient id="bg" x1="160" y1="40" x2="1780" y2="1060" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#EAF7F4"/>
+    <stop offset="0.42" stop-color="#F3F8FB"/>
+    <stop offset="1" stop-color="#EAF0FB"/>
+  </linearGradient>
+
+  <radialGradient id="haloA" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(240 250) rotate(31) scale(520 390)">
+    <stop stop-color="#6ED8C4" stop-opacity="0.20"/>
+    <stop offset="1" stop-color="#6ED8C4" stop-opacity="0"/>
+  </radialGradient>
+
+  <radialGradient id="haloB" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1680 310) rotate(155) scale(610 460)">
+    <stop stop-color="#7AA9F3" stop-opacity="0.18"/>
+    <stop offset="1" stop-color="#7AA9F3" stop-opacity="0"/>
+  </radialGradient>
+
+  <radialGradient id="haloC" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1030 920) rotate(90) scale(420 720)">
+    <stop stop-color="#66C6D6" stop-opacity="0.10"/>
+    <stop offset="1" stop-color="#66C6D6" stop-opacity="0"/>
+  </radialGradient>
+
+  <linearGradient id="wave" x1="0" y1="0" x2="1920" y2="0" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#0B7169" stop-opacity="0"/>
+    <stop offset="0.33" stop-color="#0B7169" stop-opacity="0.16"/>
+    <stop offset="0.68" stop-color="#2563D9" stop-opacity="0.14"/>
+    <stop offset="1" stop-color="#2563D9" stop-opacity="0"/>
+  </linearGradient>
+
+  <linearGradient id="network" x1="200" y1="140" x2="1720" y2="900" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#0B7169" stop-opacity="0.18"/>
+    <stop offset="1" stop-color="#2563D9" stop-opacity="0.14"/>
+  </linearGradient>
+
+  <filter id="blur24" x="-30%" y="-30%" width="160%" height="160%">
+    <feGaussianBlur stdDeviation="24"/>
+  </filter>
+</defs>
+
+<rect width="1920" height="1080" fill="url(#bg)"/>
+<rect width="1920" height="1080" fill="url(#haloA)"/>
+<rect width="1920" height="1080" fill="url(#haloB)"/>
+<rect width="1920" height="1080" fill="url(#haloC)"/>
+
+<!-- Ondas inferiores -->
+<g opacity="0.72">
+  <path d="M-80 820C210 710 360 1010 650 900C930 793 1030 725 1270 820C1510 915 1690 1005 2010 830" stroke="url(#wave)" stroke-width="1.6"/>
+  <path d="M-80 845C200 735 370 1025 660 916C930 814 1040 748 1270 842C1520 944 1710 1010 2010 860" stroke="url(#wave)" stroke-width="1.25"/>
+  <path d="M-80 873C210 760 380 1040 670 940C950 844 1060 770 1280 865C1525 970 1710 1035 2010 890" stroke="url(#wave)" stroke-width="1"/>
+  <path d="M-80 902C220 785 400 1058 690 963C980 868 1080 798 1295 895C1540 1004 1720 1060 2010 925" stroke="url(#wave)" stroke-width="0.8"/>
+</g>
+
+<!-- Red superior izquierda -->
+<g stroke="url(#network)" stroke-width="1">
+  <path d="M70 150L205 96L328 174L455 112L580 202L680 148"/>
+  <path d="M205 96L246 255L328 174L389 316L580 202"/>
+  <path d="M246 255L120 342L389 316L515 402L646 330"/>
+  <path d="M389 316L455 112"/>
+</g>
+
+<!-- Red superior derecha -->
+<g stroke="url(#network)" stroke-width="1">
+  <path d="M1300 130L1435 90L1545 160L1700 92L1845 170"/>
+  <path d="M1435 90L1478 250L1545 160L1630 315L1845 170"/>
+  <path d="M1478 250L1360 355L1630 315L1765 400"/>
+</g>
+
+<!-- Nodos -->
+<g fill="#0B7169" fill-opacity="0.15">
+  <circle cx="70" cy="150" r="3"/><circle cx="205" cy="96" r="4"/><circle cx="328" cy="174" r="3"/>
+  <circle cx="455" cy="112" r="4"/><circle cx="580" cy="202" r="3"/><circle cx="680" cy="148" r="3"/>
+  <circle cx="246" cy="255" r="3"/><circle cx="389" cy="316" r="4"/><circle cx="120" cy="342" r="3"/>
+  <circle cx="515" cy="402" r="3"/><circle cx="646" cy="330" r="4"/>
+</g>
+
+<g fill="#2563D9" fill-opacity="0.13">
+  <circle cx="1300" cy="130" r="3"/><circle cx="1435" cy="90" r="4"/><circle cx="1545" cy="160" r="3"/>
+  <circle cx="1700" cy="92" r="4"/><circle cx="1845" cy="170" r="3"/><circle cx="1478" cy="250" r="3"/>
+  <circle cx="1630" cy="315" r="4"/><circle cx="1360" cy="355" r="3"/><circle cx="1765" cy="400" r="3"/>
+</g>
+
+<!-- Halos decorativos -->
+<circle cx="1020" cy="510" r="245" stroke="#0B7169" stroke-opacity="0.045" stroke-width="1"/>
+<circle cx="1020" cy="510" r="185" stroke="#2563D9" stroke-opacity="0.04" stroke-width="1"/>
+<ellipse cx="1020" cy="510" rx="310" ry="90" transform="rotate(-13 1020 510)" stroke="#2563D9" stroke-opacity="0.04"/>
+
+<circle cx="330" cy="760" r="165" fill="#5AD0C0" fill-opacity="0.035" filter="url(#blur24)"/>
+<circle cx="1640" cy="750" r="210" fill="#4B86E8" fill-opacity="0.035" filter="url(#blur24)"/>
+</svg>

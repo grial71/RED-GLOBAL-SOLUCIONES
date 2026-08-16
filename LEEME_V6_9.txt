@@ -1,0 +1,42 @@
+RED GLOBAL DE SOLUCIONES · V6.9
+VIDEO DE FONDO SIN SONIDO
+
+NUEVO
+- El vídeo de dron sobre la ciudad se incorpora como fondo ambiental.
+- Está visible detrás de las secciones y paneles de toda la plataforma.
+- Se conserva la identidad azul / verde del diseño.
+- El vídeo no sustituye los paneles: queda detrás de ellos.
+- La intensidad se ha reducido para no dificultar la lectura.
+
+SONIDO
+- La pista de audio del MP4 se ha ELIMINADO FÍSICAMENTE.
+- El archivo final contiene únicamente vídeo.
+- El elemento HTML está además marcado como muted y volume=0.
+- La música de fondo de la Mediateca sigue siendo independiente
+  y conserva su sistema de reducción automática durante las locuciones.
+
+BUCLE
+El vídeo original dura aproximadamente 10 segundos.
+Para que el reinicio sea menos brusco, V6.9 crea un vídeo de aproximadamente
+20 segundos:
+  avance original → reproducción visual inversa → avance original...
+
+MOVIMIENTO
+- El vídeo se reproduce al 72% de velocidad.
+- Esto lo hace más ambiental y menos distractor.
+- Si el usuario tiene “reducir movimiento” activado en su dispositivo,
+  el vídeo se pausa automáticamente y queda el fotograma de fondo.
+
+ARCHIVOS NUEVOS
+/video/ciudad-fondo-sin-sonido.mp4
+/video/ciudad-fondo-poster.jpg
+
+PRUEBA
+1. Sustituir TODOS los archivos por V6.9.
+2. Mantener las carpetas /audio y /video.
+3. Abrir con Live Server.
+4. Pulsar F5.
+5. Recorrer Territorio, Recursos, Conocimiento, Proyectos,
+   Acción y Mediateca.
+6. Verificar que la ciudad se mueve suavemente detrás de las ventanas.
+7. El vídeo de ciudad no debe emitir ningún sonido.

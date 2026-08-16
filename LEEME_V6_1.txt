@@ -1,0 +1,21 @@
+RED GLOBAL DE SOLUCIONES · V6.1
+NAVEGACIÓN INTERACTIVA COMPLETA
+
+CAMBIOS
+- Las tarjetas flotantes del hero ya no son decorativas.
+- 💧 Agua:
+  abre Territorio > Agua y carga el módulo de agua.
+- 🎓 Formación:
+  abre Centro de Recursos > Formación.
+- 💰 Financiación:
+  abre Centro de Recursos > Financiación.
+- Formación y Financiación conservan el contexto territorial cuando existe.
+- Si ya has analizado Hêvié, Benín, el Centro de Recursos prioriza el territorio.
+- Añadidos estados hover, foco visible, cursor y señal ↗ para indicar que son elementos navegables.
+- La navegación es accesible también mediante teclado.
+
+PRUEBAS
+1. Desde la portada pulsa 💧 Agua.
+2. Vuelve arriba y pulsa 🎓 Formación.
+3. Analiza Hêvié, Bénin y después pulsa 💰 Financiación.
+4. Comprueba que el Centro de Recursos conserva el contexto territorial.

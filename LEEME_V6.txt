@@ -1,0 +1,41 @@
+RED GLOBAL DE SOLUCIONES · V6 PREMIUM
+CENTRO GLOBAL DE RECURSOS PARA ORGANIZACIONES
+
+NOVEDADES PRINCIPALES
+- Nueva navegación: Territorio / Centro de Recursos.
+- Hero premium con profundidad, red animada, orbe 3D y microinteracciones.
+- Centro de Recursos con cuatro motores iniciales:
+  * Organizaciones
+  * Formación
+  * Financiación
+  * Proyectos y soluciones
+- Contexto territorial conectado con el análisis V5.1.
+- Búsqueda por necesidad, tipo de organización, ámbito y categoría.
+- Catálogo inicial con portales oficiales y marcos conceptuales Gaia / CoRe.
+- Los marcos conceptuales están separados de oportunidades o financiación verificadas.
+- Etiquetas de fiabilidad y estado.
+- Tarjetas con efectos 3D (tilt), animaciones de entrada y guardado visual.
+- Selector de idioma interno:
+  * Español
+  * Français
+  * English
+  * Português
+- Botón Google Translate para más idiomas internacionales.
+- En entorno local, Google Translate se abre aparte; la traducción web completa será más útil cuando la aplicación tenga una URL pública.
+
+IMPORTANTE
+Esta V6 introduce un CATÁLOGO INICIAL de fuentes y portales.
+No afirma que una convocatoria concreta esté abierta salvo que se verifique de forma actual.
+El siguiente nivel será conectar búsquedas vivas y APIs / fuentes oficiales.
+
+PRUEBAS
+1. Pulsa Centro de Recursos.
+2. Busca: financiación agrícola
+3. Tipo: Asociación / ONG
+4. Ámbito: África
+5. Prueba también:
+   - formación agricultura
+   - agua subterránea
+   - voluntarios
+   - proyectos comunitarios
+6. Vuelve a Territorio, analiza Hêvié, Bénin y después abre Centro de Recursos.

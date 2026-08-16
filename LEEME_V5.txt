@@ -1,0 +1,29 @@
+RED GLOBAL DE SOLUCIONES · V5 DIAGNÓSTICO INTELIGENTE
+
+NOVEDADES
+- Nueva pestaña Diagnóstico.
+- Se abre automáticamente después de cada análisis.
+- Síntesis adaptada a la necesidad escrita.
+- Señales clave: agua potable, pozos, lluvia 7 días, ET0, temperatura y población.
+- Nivel de confianza por tipo de dato.
+- Diferencia entre orientación preliminar y decisiones que requieren estudio local.
+- Acciones recomendadas según la necesidad.
+- Botones para abrir Agua, Hidrogeología o Clima directamente.
+- Trazabilidad de fuentes.
+- Si una fuente falla, el sistema marca N/D y no inventa datos.
+
+PRUEBA RECOMENDADA
+Territorio: Hêvié, Bénin
+Necesidad: buscar acuíferos y agua subterránea
+
+OTRAS PRUEBAS
+- necesito agua para riego agrícola
+- buscar agua potable
+- estudiar clima y lluvia
+
+V5.1
+- Ajustado el texto «Módulo técnico sugerido».
+- Para riego agrícola ahora muestra «Agua + Clima».
+- Para aguas subterráneas muestra «Hidrogeología».
+- Para agua potable muestra «Agua».
+- Para meteorología muestra «Clima».

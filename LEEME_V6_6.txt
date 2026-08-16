@@ -1,0 +1,41 @@
+RED GLOBAL DE SOLUCIONES · V6.6
+BOTÓN DE CONTACTO FLOTANTE
+
+NUEVO
+- Botón “Contacto · Más información” siempre visible.
+- Posición fija en la esquina inferior derecha.
+- Disponible mientras se navega por Territorio, Recursos,
+  Conocimiento, Proyectos, Acción y Mediateca.
+- En móvil se transforma en un botón compacto con icono de correo.
+- Accesible mediante teclado.
+- Animación muy discreta.
+- Respeta prefers-reduced-motion.
+
+CORREO
+Amigosypintores@gmail.com
+
+COMPORTAMIENTO
+Al pulsar el botón se abre la aplicación de correo del visitante
+mediante mailto: con:
+
+Asunto:
+Información sobre Red Global de Soluciones
+
+Mensaje inicial:
+Hola,
+
+Me gustaría recibir más información sobre la Red Global de Soluciones.
+
+Gracias.
+
+IMPORTANTE
+No se envía ningún correo automáticamente.
+El usuario conserva el control y debe confirmar el envío desde
+su propia aplicación o servicio de correo.
+
+PRUEBA
+1. Abrir con Live Server.
+2. Pulsar F5.
+3. Bajar por cualquier sección.
+4. Verificar que el botón permanece visible.
+5. Pulsarlo y comprobar que se abre el cliente de correo.

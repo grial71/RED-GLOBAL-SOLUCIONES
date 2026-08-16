@@ -1,0 +1,124 @@
+PROMPT MAESTRO · META AI VIDEO
+RED GLOBAL DE SOLUCIONES
+
+FORMATO
+Vídeo cinematográfico horizontal 16:9, estilo documental futurista,
+movimiento suave de dron, alta calidad, iluminación realista,
+arquitectura original, naturaleza integrada y personas naturales.
+No incluir texto dentro del vídeo, no incluir logotipos y no copiar
+edificios exactos de ninguna organización.
+
+PROMPT MAESTRO
+
+Crea una secuencia cinematográfica realista que muestre la transición
+desde una gran ciudad moderna, saturada y estresante, hacia una sociedad
+urbana completamente diferente, ecológica, cooperativa y tecnológicamente
+avanzada.
+
+La cámara debe comportarse como un dron que avanza lentamente y sin cortes
+bruscos. Al principio sobrevuela una ciudad contemporánea muy densa:
+tráfico intenso, coches detenidos, humo ligero, hormigón, ruido visual,
+personas caminando deprisa y mirando sus teléfonos, poco espacio verde,
+sensación de estrés y desconexión. La escena no debe parecer una guerra
+ni una catástrofe; simplemente una ciudad normal demasiado saturada.
+
+El dron continúa hacia delante y se aproxima a una gran franja de árboles,
+vegetación y jardines que funciona como una transición visual. Al atravesar
+esa barrera verde cambia poco a poco la luz, el sonido imaginado, el color
+y el ambiente.
+
+Al otro lado aparece una ciudad totalmente nueva y original, inspirada
+conceptualmente en las ideas de ciudades sostenibles, economía basada en
+recursos y el futurismo ecológico asociado a The Venus Project, pero SIN
+copiar sus edificios, planos, logotipos o diseños exactos.
+
+Mostrar una ciudad humana, luminosa y creíble integrada con la naturaleza:
+grandes parques, árboles entre los edificios, jardines comunitarios,
+huertos urbanos, zonas de encuentro, agua limpia, arquitectura curva y
+bioclimática, edificios de altura moderada cubiertos parcialmente de
+vegetación, energía solar integrada, transporte público eléctrico silencioso,
+carriles para bicicletas, caminos peatonales amplios y ausencia de tráfico
+agresivo.
+
+El dron desciende lentamente para mostrar personas diversas y sanas:
+familias, jóvenes, mayores y niños utilizando espacios públicos, personas
+que se saludan y se reconocen, gente cultivando alimentos, aprendiendo,
+reparando objetos, colaborando y conversando. Las expresiones deben ser
+naturales, no exageradamente felices ni artificiales.
+
+Mostrar brevemente sistemas tecnológicos discretos al servicio de la vida:
+energía renovable, gestión eficiente del agua, agricultura urbana,
+invernaderos, centros de conocimiento, talleres compartidos, datos
+territoriales y automatización útil. La tecnología debe integrarse de forma
+elegante y no parecer una ciudad de ciencia ficción llena de pantallas.
+
+En la escena final, el dron vuelve a elevarse y revela el conjunto:
+una ciudad original conectada con bosques, agricultura, agua, energía y
+espacios públicos, con un equilibrio evidente entre tecnología, comunidad
+y ecosistemas.
+
+Sensación emocional:
+comenzar con tensión y saturación, pasar por curiosidad y descubrimiento,
+terminar con esperanza, serenidad, cooperación y posibilidad real.
+
+Estética:
+documental cinematográfico premium, realismo fotográfico, movimiento de
+cámara estable, profundidad atmosférica, luz natural, color grading que
+evoluciona desde tonos grises y fríos hacia verdes, turquesas, azules y
+luz cálida.
+
+Evitar:
+texto sobre la imagen, marcas comerciales, logotipos, réplicas exactas de
+The Venus Project, naves voladoras fantasiosas, robots humanoides dominantes,
+rascacielos imposibles, sonrisas artificiales, caras deformadas, multitudes
+duplicadas, movimiento acelerado, destrucción, pobreza utilizada como
+espectáculo o estética apocalíptica.
+
+IMPORTANTE:
+No generar voz ni diálogo en las escenas. La locución y la música se añadirán
+después para poder sincronizarlas profesionalmente.
+
+
+PROMPTS POR ESCENA
+(Recomendado: crear cada escena por separado para mantener más control)
+
+ESCENA 1 · CIUDAD ACTUAL
+“Drone cinematográfico avanzando lentamente sobre una ciudad europea moderna
+muy densa en hora punta, tráfico intenso, hormigón, ruido visual, personas
+apresuradas, muy poco verde, atmósfera ligeramente gris, realista, no
+apocalíptica, documental premium, movimiento estable hacia delante, 16:9.”
+
+ESCENA 2 · TRANSICIÓN
+“El mismo dron continúa hacia una amplia barrera de árboles maduros y
+vegetación, entra entre las copas de los árboles y atraviesa un corredor
+verde, la luz cambia gradualmente de gris fría a verde y cálida, sensación
+de descubrimiento, transición fluida, realismo cinematográfico, 16:9.”
+
+ESCENA 3 · NUEVA CIUDAD
+“El dron sale de los árboles y descubre una ciudad ecológica futurista pero
+creíble y completamente original: arquitectura bioclimática curva, parques,
+jardines, huertos urbanos, energía solar integrada, transporte eléctrico,
+bicicletas, agua y vegetación entre edificios, inspirada conceptualmente en
+urbanismo basado en recursos y futurismo ecológico, sin copiar The Venus
+Project, sin logotipos, fotorealista, 16:9.”
+
+ESCENA 4 · PERSONAS
+“La cámara desciende suavemente a nivel humano en una gran zona pública verde.
+Personas diversas de distintas edades se saludan, conversan, cultivan,
+aprenden, reparan objetos y comparten espacios. Niños jugando, mayores
+caminando, ambiente sano y natural, expresiones realistas, comunidad sin
+utopía artificial, documental cinematográfico, 16:9.”
+
+ESCENA 5 · SISTEMAS
+“Secuencia cinematográfica de infraestructura integrada: paneles solares,
+gestión eficiente de agua, agricultura urbana, invernaderos, taller de
+reparación, centro de conocimiento y transporte público eléctrico silencioso.
+Tecnología discreta al servicio de las personas y la naturaleza, no ciudad
+de ciencia ficción, fotorealista, 16:9.”
+
+ESCENA 6 · FINAL
+“Drone elevándose lentamente al atardecer sobre toda la ciudad ecológica,
+mostrando parques, bosques, cultivos, agua, energía renovable, espacios
+comunitarios y movilidad limpia formando un único sistema conectado.
+Sensación de esperanza y posibilidad real, iluminación dorada con verdes,
+azules y turquesas, plano final épico pero sereno, fotorealista, 16:9.”

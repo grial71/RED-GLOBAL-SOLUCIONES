@@ -1,0 +1,68 @@
+RED GLOBAL DE SOLUCIONES · V6.5
+MEDIATECA AUDIOVISUAL
+
+OBJETIVO
+Añadir una capa audiovisual seria a la plataforma:
+- locuciones más largas
+- música adecuada
+- banco de vídeos libres/licenciables
+- comparación responsable con The Venus Project
+
+NUEVA SECCIÓN: MEDIATECA
+- Guion Introducción (~4–5 min)
+- Guion Comparación Venus (~3–4 min)
+- Guion Proyectos conectados (~3–4 min)
+- Narración mediante SpeechSynthesis del navegador
+- Control de velocidad
+- Detener voz
+
+MÚSICA
+- Música ambiental GENERADA en el navegador con Web Audio.
+- No utiliza una canción de terceros.
+- Tres ambientes:
+  * Transición
+  * Esperanza
+  * Sistemas
+- Control de volumen.
+- La música baja automáticamente mientras habla la locución.
+
+BANCO DE VÍDEOS
+- Enlaces de búsqueda a Pexels para:
+  * ciudad/tráfico
+  * dron urbano
+  * jardines urbanos
+  * energía solar
+  * comunidad
+  * agricultura sostenible
+- Pixabay como banco alternativo.
+- The Venus Project aparece como REFERENCIA OFICIAL,
+  pero sus vídeos NO se marcan como libres de reutilización.
+
+IMPORTANTE SOBRE DERECHOS
+- “Royalty-free” no significa “sin derechos”.
+- Pexels permite uso conforme a su Pexels License.
+- Pixabay tiene su Content License y puede haber otros derechos
+  sobre personas, marcas, propiedades o música concreta.
+- Conservar la licencia/página del recurso elegido.
+- No traducir, descargar y re-subir material de The Venus Project
+  sin permiso/licencia verificable.
+- Sí podemos enlazar a sus páginas oficiales y compararlas.
+
+COMPARACIÓN CON THE VENUS PROJECT
+- Se muestran puntos de comparación:
+  * recursos
+  * diseño urbano
+  * tecnología/sistemas
+- También se muestran diferencias:
+  * nuestra plataforma parte de territorios actuales
+  * proyectos distribuidos
+  * trazabilidad y verificación
+- Se dice expresamente que NO existe afiliación.
+
+PRUEBA
+1. F5.
+2. Pulsa Mediateca.
+3. Pulsa Música y prueba los 3 ambientes.
+4. Pulsa Narrar texto.
+5. Cambia a Comparación Venus.
+6. Explora el banco visual.

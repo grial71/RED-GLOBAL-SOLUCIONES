@@ -1,0 +1,38 @@
+RED GLOBAL DE SOLUCIONES · V6.3
+FONDO INMERSIVO GLOBAL
+
+OBJETIVO
+Extender el ambiente azul/verde premium de la cabecera
+a toda la parte inferior de la plataforma.
+
+CAMBIOS
+- Fondo azul/verde profundo en toda la página.
+- Continuidad visual con la cabecera principal.
+- Halos verdes, azules y turquesa en el fondo.
+- Nueva red ambiental animada detrás de los paneles.
+- La textura SVG de V6.2 se mantiene, ahora integrada sobre el fondo oscuro.
+- Paneles principales en vidrio translúcido.
+- Diagnóstico, Agua, Hidrogeología, Clima y Recursos mantienen alta legibilidad.
+- Tarjetas con pequeñas variaciones verde/azul.
+- Inputs menos blancos.
+- Pestañas más integradas con el fondo.
+- Scrollbar azul/verde.
+- En móvil se reduce la intensidad del efecto.
+- Se respeta prefers-reduced-motion.
+
+NO SE MODIFICA
+- Navegación V6.1
+- Centro de Recursos
+- Diagnóstico V5
+- Agua / Clima / Hidrogeología
+- Idiomas
+- Google Translate
+- Datos y fuentes
+
+PRUEBA RECOMENDADA
+1. Abrir con Live Server.
+2. Pulsar F5.
+3. Analizar Hêvié o Torremolinos.
+4. Recorrer Diagnóstico, Agua e Hidrogeología.
+5. Entrar al Centro de Recursos y bajar por varias tarjetas.
+6. Comprobar que el fondo azul/verde sigue visible entre los paneles.

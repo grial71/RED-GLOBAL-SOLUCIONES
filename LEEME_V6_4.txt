@@ -1,0 +1,61 @@
+RED GLOBAL DE SOLUCIONES · V6.4
+ECOSISTEMA DE CONOCIMIENTO, PROYECTOS Y ACCIÓN
+
+OBJETIVO
+Convertir la plataforma en algo más amplio que un visor territorial:
+un espacio para comprender, conectar proyectos y pasar a la acción.
+
+NUEVA NAVEGACIÓN
+- Territorio
+- Recursos
+- Conocimiento
+- Proyectos
+- Acción
+
+CONOCIMIENTO
+- Buscador de libros, vídeos y documentos.
+- Filtros por formato, idioma y tema.
+- Documentos Gaia Union y CoRe clasificados como marcos conceptuales.
+- Libros de referencia registrados sin distribuir contenido protegido.
+- Sección preparada para traducciones, subtítulos y doblajes.
+- Un vídeo no se marca como traducido hasta que la traducción exista realmente.
+
+PROYECTOS
+- Mapa internacional con nodos iniciales.
+- Hêvié: piloto de agricultura/agua.
+- Barcelona: propuesta de charlas/acción pública.
+- Annobón: caso futuro de resiliencia territorial.
+- Nodo distribuido: arquitectura conceptual, marcador simbólico.
+- Cada ficha separa problema, acción y aprendizaje.
+- Formulario “Proponer un proyecto”.
+- En V6.4 los borradores se guardan SOLO en el navegador (localStorage).
+
+ACCIÓN
+- Generador sencillo de acciones públicas.
+- Ajusta objetivo, tamaño del grupo y entorno.
+- Ideas iniciales: charla en plaza, biodiversidad urbana, reparación,
+  proyección, mapa de recursos y microproyecto de 30 días.
+
+INTRO CINEMATOGRÁFICO
+- Botón “Ver visión” en la portada.
+- Experiencia interactiva de 4 escenas.
+- Reproducción automática.
+- Navegación manual.
+- Narración mediante SpeechSynthesis del navegador.
+- Es un prototipo visual, NO sustituye todavía el vídeo definitivo de Miguel.
+
+IMPORTANTE
+- Los casos de proyecto están etiquetados por estado.
+- Annobón no se presenta como proyecto Gaia existente.
+- Los documentos conceptuales no se presentan como programas operativos.
+- No se inventan enlaces de libros o vídeos.
+- Más adelante podremos añadir enlaces oficiales verificados.
+
+PRUEBA RECOMENDADA
+1. F5.
+2. Pulsa “Ver visión”.
+3. Prueba Reproducir y Narración.
+4. Entra en Conocimiento y busca “Gaia”, “economía” o “video”.
+5. Entra en Proyectos y abre el mapa.
+6. Pulsa “Proponer un proyecto” y guarda un borrador.
+7. Entra en Acción y genera una idea.

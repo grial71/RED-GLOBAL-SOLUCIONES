@@ -1,0 +1,31 @@
+RED GLOBAL DE SOLUCIONES · V6.2
+CONFORT VISUAL / FONDO AMBIENTAL
+
+OBJETIVO
+Reducir el cansancio visual provocado por grandes zonas blancas
+cuando se recorren informes, tarjetas y artículos largos.
+
+CAMBIOS
+- Fondo general verde / azul / gris muy suave.
+- Nueva imagen de fondo: fondo-red-global.svg
+- Red de nodos, halos y ondas abstractas con muy baja intensidad.
+- Movimiento ambiental muy lento del fondo.
+- Grandes paneles con efecto cristal/translúcido.
+- Paneles interiores con pequeñas variaciones verde, azul y neutro.
+- Tarjetas KPI, Agua, Hidrogeología, Diagnóstico y Recursos menos blancas.
+- Pestañas con fondo azul-verde muy tenue.
+- Inputs y textareas menos brillantes.
+- Centro de Recursos adaptado al mismo estilo.
+- El mapa conserva contraste suficiente.
+- Respeta prefers-reduced-motion.
+
+IMPORTANTE
+El efecto está diseñado para acompañar la lectura, no competir con ella.
+No cambia ninguna función de navegación, datos, idiomas o búsqueda.
+
+PRUEBA
+1. Abrir la página con Live Server.
+2. Pulsar F5.
+3. Analizar un territorio.
+4. Bajar lentamente por Diagnóstico, Agua e Hidrogeología.
+5. Abrir Centro de Recursos y recorrer las tarjetas.

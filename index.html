@@ -1,0 +1,2278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Red Global de Soluciones</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.Default.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ======================================================
+     V6.9 · VIDEO AMBIENTAL DE FONDO
+     El archivo no contiene pista de audio.
+     ====================================================== -->
+<div
+    class="global-video-background"
+    aria-hidden="true"
+>
+    <video
+        id="globalBackgroundVideo"
+        class="global-background-video"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+        poster="video/ciudad-fondo-poster.jpg"
+        tabindex="-1"
+    >
+        <source
+            src="video/ciudad-fondo-sin-sonido.mp4"
+            type="video/mp4"
+        >
+    </video>
+
+    <div class="global-video-tint"></div>
+    <div class="global-video-vignette"></div>
+</div>
+
+
+<header class="hero premium-hero">
+    <canvas id="networkCanvas" class="hero-network" aria-hidden="true"></canvas>
+
+    <div class="hero-glow hero-glow-one" aria-hidden="true"></div>
+    <div class="hero-glow hero-glow-two" aria-hidden="true"></div>
+
+    <div class="hero-content premium-hero-content">
+
+        <div class="premium-topbar">
+
+            <a class="premium-brand-link" href="#" aria-label="Red Global de Soluciones">
+                <div class="brand-icon premium-brand-icon">🌍</div>
+
+                <div class="premium-brand-copy">
+                    <strong data-i18n="brandName">
+                        Red Global de Soluciones
+                    </strong>
+
+                    <span data-i18n="brandTag">
+                        Inteligencia territorial y recursos para organizaciones
+                    </span>
+                </div>
+            </a>
+
+
+            <nav class="premium-main-nav" aria-label="Navegación principal">
+
+                <button
+                    class="view-switch active"
+                    type="button"
+                    data-view-target="territorio"
+                >
+                    <span>◎</span>
+                    <span data-i18n="navTerritory">Territorio</span>
+                </button>
+
+                <button
+                    class="view-switch"
+                    type="button"
+                    data-view-target="recursos"
+                >
+                    <span>◈</span>
+                    <span data-i18n="navResources">Recursos</span>
+                </button>
+
+                <button
+                    class="view-switch"
+                    type="button"
+                    data-view-target="conocimiento"
+                >
+                    <span>▤</span>
+                    <span data-i18n="navKnowledge">Conocimiento</span>
+                </button>
+
+                <button
+                    class="view-switch"
+                    type="button"
+                    data-view-target="proyectos"
+                >
+                    <span>⌘</span>
+                    <span data-i18n="navProjects">Proyectos</span>
+                </button>
+
+                <button
+                    class="view-switch"
+                    type="button"
+                    data-view-target="accion"
+                >
+                    <span>✦</span>
+                    <span data-i18n="navAction">Acción</span>
+                </button>
+
+                <button
+                    class="view-switch"
+                    type="button"
+                    data-view-target="mediateca"
+                >
+                    <span>▶</span>
+                    <span data-i18n="navMedia">Mediateca</span>
+                </button>
+
+            </nav>
+
+
+            <div class="premium-actions">
+
+                <div class="language-control">
+
+                    <button
+                        id="languageToggle"
+                        class="language-toggle"
+                        type="button"
+                        aria-expanded="false"
+                    >
+                        <span>🌐</span>
+                        <span id="languageCurrent">ES</span>
+                        <span class="language-chevron">⌄</span>
+                    </button>
+
+
+                    <div
+                        id="languageMenu"
+                        class="language-menu hidden"
+                    >
+
+                        <div class="language-menu-head">
+                            <strong data-i18n="languageTitle">
+                                Idioma
+                            </strong>
+
+                            <span data-i18n="languageHelp">
+                                Interfaz + Google Translate
+                            </span>
+                        </div>
+
+                        <div class="integrated-language-label">
+                            Idiomas integrados
+                        </div>
+
+
+                        <button type="button" class="language-option" data-ui-lang="es">
+                            🇪🇸 Español
+                        </button>
+
+                        <button type="button" class="language-option" data-ui-lang="fr">
+                            🇫🇷 Français
+                        </button>
+
+                        <button type="button" class="language-option" data-ui-lang="en">
+                            🇬🇧 English
+                        </button>
+
+                        <button type="button" class="language-option" data-ui-lang="pt">
+                            🇵🇹 Português
+                        </button>
+
+
+                        <div class="language-divider"></div>
+
+
+                        <div class="google-language-label">
+                            <span>Google Translate · externo ↗</span>
+                            <small data-i18n="googleLanguages">
+                                Más idiomas internacionales
+                            </small>
+                        </div>
+
+
+                        <div class="google-language-grid">
+
+                            <button type="button" data-google-lang="de">🇩🇪 DE</button>
+                            <button type="button" data-google-lang="it">🇮🇹 IT</button>
+                            <button type="button" data-google-lang="ar">🇸🇦 AR</button>
+                            <button type="button" data-google-lang="zh-CN">🇨🇳 中文</button>
+                            <button type="button" data-google-lang="ja">🇯🇵 日本語</button>
+                            <button type="button" data-google-lang="hi">🇮🇳 हिन्दी</button>
+                            <button type="button" data-google-lang="ru">🇷🇺 RU</button>
+                            <button type="button" data-google-lang="nl">🇳🇱 NL</button>
+
+                        </div>
+
+
+                        <button
+                            id="googleTranslateMore"
+                            class="google-translate-full"
+                            type="button"
+                        >
+                            🌐
+                            <span data-i18n="googleTranslateFull">
+                                Abrir Google Translate
+                            </span>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="premium-hero-grid">
+
+            <div class="premium-hero-copy">
+
+                <span class="premium-kicker" data-i18n="heroKicker">
+                    RED GLOBAL · INTELIGENCIA COLECTIVA
+                </span>
+
+                <h1 data-i18n="heroTitle">
+                    Del territorio a la solución.
+                </h1>
+
+                <p data-i18n="heroDescription">
+                    Analiza necesidades, conecta organizaciones, descubre formación,
+                    proyectos, conocimiento y vías de financiación en un mismo lugar.
+                </p>
+
+
+                <div class="premium-hero-buttons">
+
+                    <button
+                        class="hero-primary-action"
+                        type="button"
+                        data-view-target="recursos"
+                    >
+                        <span data-i18n="heroExploreResources">
+                            Explorar recursos
+                        </span>
+                        <span>↗</span>
+                    </button>
+
+                    <button
+                        class="hero-secondary-action"
+                        type="button"
+                        data-view-target="territorio"
+                    >
+                        <span data-i18n="heroAnalyzeTerritory">
+                            Analizar territorio
+                        </span>
+                        <span>→</span>
+                    </button>
+
+                    <button
+                        id="openCinematicIntro"
+                        class="hero-cinematic-action"
+                        type="button"
+                    >
+                        <span>▶</span>
+                        <span data-i18n="heroVision">
+                            Ver visión
+                        </span>
+                    </button>
+
+                </div>
+
+
+                <div class="hero-trust-row">
+
+                    <span>✓ <span data-i18n="trustSources">Fuentes trazables</span></span>
+                    <span>✓ <span data-i18n="trustGlobal">Enfoque mundial</span></span>
+                    <span>✓ <span data-i18n="trustNoGuess">Sin inventar datos</span></span>
+
+                </div>
+
+            </div>
+
+
+            <div class="premium-orb-stage" aria-hidden="true">
+
+                <div class="orb-orbit orbit-one"></div>
+                <div class="orb-orbit orbit-two"></div>
+
+                <div id="premiumOrb" class="premium-orb">
+                    <div class="orb-grid orb-grid-a"></div>
+                    <div class="orb-grid orb-grid-b"></div>
+                    <div class="orb-highlight"></div>
+                    <div class="orb-core"></div>
+                </div>
+
+                <button
+                    class="orb-floating-card card-a orb-nav-card"
+                    type="button"
+                    data-orb-action="agua"
+                    aria-label="Abrir módulo Agua"
+                    title="Abrir Agua"
+                >
+                    <span>💧</span>
+                    <strong>Agua</strong>
+                    <small>territorio</small>
+                </button>
+
+                <button
+                    class="orb-floating-card card-b orb-nav-card"
+                    type="button"
+                    data-orb-action="formacion"
+                    aria-label="Abrir recursos de Formación"
+                    title="Abrir Formación"
+                >
+                    <span>🎓</span>
+                    <strong>Formación</strong>
+                    <small>conocimiento</small>
+                </button>
+
+                <button
+                    class="orb-floating-card card-c orb-nav-card"
+                    type="button"
+                    data-orb-action="financiacion"
+                    aria-label="Abrir recursos de Financiación"
+                    title="Abrir Financiación"
+                >
+                    <span>💰</span>
+                    <strong>Financiación</strong>
+                    <small>oportunidades</small>
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+</header>
+
+
+<canvas
+    id="pageAmbientCanvas"
+    class="page-ambient-canvas"
+    aria-hidden="true"
+></canvas>
+
+<main>
+
+    <div id="vistaTerritorio" class="app-view active">
+
+    <section class="search-panel">
+        <div class="section-heading">
+            <div>
+                <span class="eyebrow">EXPLORACIÓN GLOBAL</span>
+                <h2>¿Dónde quieres actuar?</h2>
+            </div>
+            <span class="status-chip">● Buscador mundial</span>
+        </div>
+
+        <div class="global-search-row">
+            <div class="field">
+                <label for="territorio">País, región, ciudad, pueblo o territorio</label>
+                <input id="territorio" type="text" placeholder="Ej.: Annobón, Tokyo, Rouen, Torremolinos..." autocomplete="off">
+            </div>
+            <button id="buscarLugar" class="secondary-button" type="button">🔎 Buscar lugar</button>
+        </div>
+
+        <div id="resultadosBusqueda" class="search-results hidden"></div>
+        <div id="lugarSeleccionado" class="selected-place hidden"></div>
+
+        <div class="field need-field">
+            <label for="necesidad">Necesidad que quieres estudiar</label>
+            <textarea id="necesidad" placeholder="Ej.: buscar agua, mejorar el riego, estudiar agricultura, energía..."></textarea>
+        </div>
+
+        <div class="search-actions">
+            <button id="analizar" type="button" disabled>
+                <span>Analizar territorio</span>
+                <span>→</span>
+            </button>
+            <div id="estadoProceso" class="process-status">Primero busca y selecciona un territorio.</div>
+        </div>
+    </section>
+
+    <section id="dashboard" class="dashboard hidden">
+        <div class="dashboard-header">
+            <div>
+                <span class="eyebrow">INFORME TERRITORIAL</span>
+                <h2 id="tituloTerritorio">Territorio</h2>
+                <p id="subtituloTerritorio">Análisis territorial</p>
+            </div>
+            <div class="dashboard-meta">
+                <span class="live-dot"></span>
+                <div>
+                    <strong>Consulta realizada</strong>
+                    <span id="fechaConsulta">—</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="metrics-grid">
+            <article class="metric-card">
+                <div class="metric-icon">💧</div>
+                <div>
+                    <span class="metric-label">Agua potable</span>
+                    <strong id="datoAguaPotable" class="metric-value">—</strong>
+                    <small>registros OSM</small>
+                </div>
+            </article>
+
+            <article class="metric-card">
+                <div class="metric-icon">🕳️</div>
+                <div>
+                    <span class="metric-label">Pozos</span>
+                    <strong id="datoPozos" class="metric-value">—</strong>
+                    <small>registros OSM</small>
+                </div>
+            </article>
+
+            <article class="metric-card">
+                <div class="metric-icon">🏥</div>
+                <div>
+                    <span class="metric-label">Hospitales</span>
+                    <strong id="datoHospitales" class="metric-value">—</strong>
+                    <small>registros OSM</small>
+                </div>
+            </article>
+
+            <article class="metric-card">
+                <div class="metric-icon">🏫</div>
+                <div>
+                    <span class="metric-label">Escuelas</span>
+                    <strong id="datoEscuelas" class="metric-value">—</strong>
+                    <small>registros OSM</small>
+                </div>
+            </article>
+
+            <article class="metric-card">
+                <div class="metric-icon">🛒</div>
+                <div>
+                    <span class="metric-label">Mercados</span>
+                    <strong id="datoMercados" class="metric-value">—</strong>
+                    <small>registros OSM</small>
+                </div>
+            </article>
+        </div>
+
+        <nav class="dashboard-tabs">
+            <button class="tab-button" data-tab="diagnostico" type="button">Diagnóstico</button>
+            <button class="tab-button active" data-tab="resumen" type="button">Resumen</button>
+            <button class="tab-button" data-tab="agua" type="button">Agua</button>
+            <button class="tab-button" data-tab="hidrogeologia" type="button">Hidrogeología</button>
+            <button class="tab-button" data-tab="clima" type="button">Clima</button>
+            <button class="tab-button" data-tab="agricultura" type="button">Agricultura</button>
+            <button class="tab-button" data-tab="energia" type="button">Energía</button>
+            <button class="tab-button" data-tab="proyectos" type="button">Proyectos</button>
+            <button class="tab-button" data-tab="financiacion" type="button">Financiación</button>
+        </nav>
+
+        <div class="workspace-grid">
+            <article class="panel">
+                <div class="panel-header">
+                    <div>
+                        <span class="panel-kicker">CARTOGRAFÍA</span>
+                        <h3>Infraestructuras registradas</h3>
+                    </div>
+                    <span class="source-badge">OpenStreetMap</span>
+                </div>
+                <div id="mapa"></div>
+
+                <div class="map-legend" aria-label="Leyenda del mapa">
+                    <div class="map-legend-title">Leyenda</div>
+
+                    <div class="map-legend-items">
+                        <span class="legend-item">
+                            <span class="legend-symbol emoji">💧</span>
+                            Agua potable OSM
+                        </span>
+
+                        <span class="legend-item">
+                            <span class="legend-symbol emoji">🕳️</span>
+                            Pozo OSM
+                        </span>
+
+                        <span class="legend-item">
+                            <span class="legend-symbol emoji">🏥</span>
+                            Hospital OSM
+                        </span>
+
+                        <span class="legend-item">
+                            <span class="legend-symbol emoji">🏫</span>
+                            Escuela OSM
+                        </span>
+
+                        <span class="legend-item">
+                            <span class="legend-symbol emoji">🛒</span>
+                            Mercado OSM
+                        </span>
+
+                        <span id="leyendaIGRAC" class="legend-item legend-igrac is-inactive">
+                            <span class="legend-symbol igrac"></span>
+                            IGRAC GGIS · capa WMS
+                        </span>
+                    </div>
+
+                    <p class="map-legend-note">
+                        Los marcadores OSM se agrupan automáticamente al alejar el mapa.
+                    </p>
+                </div>
+            </article>
+
+            <article class="panel diagnosis-panel">
+                <div class="panel-header">
+                    <div>
+                        <span class="panel-kicker">CALIDAD DEL DATO</span>
+                        <h3>¿Qué sabemos realmente?</h3>
+                    </div>
+                </div>
+                <div id="diagnostico">
+                    <p class="empty-message">Realiza un análisis territorial.</p>
+                </div>
+            </article>
+        </div>
+
+        <div class="tab-content">
+
+            <div id="tab-diagnostico" class="tab-panel">
+                <article class="panel">
+                    <div class="smart-loading">
+                        <span>🧭</span>
+                        <h3>Diagnóstico inteligente del territorio</h3>
+                        <p>
+                            Analiza primero un territorio para generar
+                            una síntesis automática basada únicamente
+                            en los datos conectados y sus limitaciones.
+                        </p>
+                    </div>
+                </article>
+            </div>
+
+            <div id="tab-resumen" class="tab-panel active">
+                <div class="content-grid">
+                    <article class="panel">
+                        <div class="panel-header">
+                            <div>
+                                <span class="panel-kicker">TERRITORIO</span>
+                                <h3>Datos generales</h3>
+                            </div>
+                        </div>
+                        <div id="datosGenerales">—</div>
+                    </article>
+
+                    <article class="panel">
+                        <div class="panel-header">
+                            <div>
+                                <span class="panel-kicker">WIKIDATA</span>
+                                <h3>Contexto demográfico</h3>
+                            </div>
+                        </div>
+                        <div id="datosWikidata">—</div>
+                    </article>
+                </div>
+
+                <article class="panel need-panel">
+                    <div class="panel-header">
+                        <div>
+                            <span class="panel-kicker">NECESIDAD DECLARADA</span>
+                            <h3>Objetivo del análisis</h3>
+                        </div>
+                        <span class="source-badge user">Información local</span>
+                    </div>
+                    <p id="necesidadMostrada">—</p>
+                </article>
+            </div>
+
+            <div id="tab-agua" class="tab-panel">
+                <article class="panel">
+                    <div class="water-loading">
+                        <span>💧</span>
+                        <h3>Módulo de agua</h3>
+                        <p>Analiza primero un territorio.</p>
+                    </div>
+                </article>
+            </div>
+
+            <div id="tab-hidrogeologia" class="tab-panel">
+                <article class="panel">
+                    <div class="hydro-loading">
+                        <span>🪨</span>
+                        <h3>Módulo de hidrogeología</h3>
+                        <p>Analiza primero un territorio.</p>
+                    </div>
+                </article>
+            </div>
+
+            <div id="tab-clima" class="tab-panel">
+                <article class="panel coming-soon">
+                    <span>🌦️</span>
+                    <h3>Meteorología y clima</h3>
+                    <p>Analiza primero un territorio.</p>
+                </article>
+            </div>
+
+            <div id="tab-agricultura" class="tab-panel">
+                <article class="panel coming-soon">
+                    <span>🌱</span>
+                    <h3>Inteligencia agrícola</h3>
+                    <p>Suelos, cultivos, productividad, riego y soluciones agrícolas.</p>
+                </article>
+            </div>
+
+            <div id="tab-energia" class="tab-panel">
+                <article class="panel coming-soon">
+                    <span>☀️</span>
+                    <h3>Potencial energético</h3>
+                    <p>Energía solar, eólica y otras tecnologías adaptadas al territorio.</p>
+                </article>
+            </div>
+
+            <div id="tab-proyectos" class="tab-panel">
+                <article class="panel coming-soon">
+                    <span>🤝</span>
+                    <h3>Proyectos comparables</h3>
+                    <p>Iniciativas y experiencias similares desarrolladas en otros territorios.</p>
+                </article>
+            </div>
+
+            <div id="tab-financiacion" class="tab-panel">
+                <article class="panel coming-soon">
+                    <span>💰</span>
+                    <h3>Financiación</h3>
+                    <p>Subvenciones, fondos, cooperación, inversión de impacto y ayudas.</p>
+                </article>
+            </div>
+        </div>
+
+        <div class="sources-bar">
+            <span>Fuentes conectadas</span>
+            <div>
+                <span class="source-pill active">OpenStreetMap</span>
+                <span class="source-pill active">Nominatim</span>
+                <span class="source-pill active">Overpass</span>
+                <span id="fuenteWikidata" class="source-pill">Wikidata</span>
+                <span class="source-pill active">Open-Meteo</span>
+                <span id="fuenteIGRAC" class="source-pill">IGRAC GGIS</span>
+            </div>
+        </div>
+    </section>
+
+    </div>
+
+
+
+    <section
+        id="vistaRecursos"
+        class="app-view resources-view hidden"
+        aria-label="Centro de Recursos"
+    >
+
+        <section class="resource-command-panel">
+
+            <div class="resource-command-head">
+
+                <div>
+
+                    <span class="eyebrow" data-i18n="resourceKicker">
+                        CENTRO GLOBAL DE RECURSOS
+                    </span>
+
+                    <h2 data-i18n="resourceTitle">
+                        ¿Qué necesita tu organización?
+                    </h2>
+
+                    <p data-i18n="resourceSubtitle">
+                        Busca organizaciones, formación, financiación,
+                        proyectos y soluciones sin perder el contexto territorial.
+                    </p>
+
+                </div>
+
+
+                <div class="resource-context-card tilt-card">
+
+                    <span class="resource-context-label" data-i18n="resourceContext">
+                        Contexto territorial
+                    </span>
+
+                    <strong id="resourceTerritoryName">
+                        Sin territorio seleccionado
+                    </strong>
+
+                    <span id="resourceTerritoryDetail">
+                        Puedes buscar globalmente o volver a Territorio.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="resource-search-shell">
+
+                <div class="resource-search-main">
+
+                    <div class="resource-search-icon">⌕</div>
+
+                    <input
+                        id="resourceQuery"
+                        type="search"
+                        autocomplete="off"
+                        data-i18n-placeholder="resourcePlaceholder"
+                        placeholder="Ej.: financiación agrícola, formación solar, organizaciones de agua..."
+                    >
+
+                    <button
+                        id="resourceSearchButton"
+                        type="button"
+                    >
+                        <span data-i18n="resourceSearchButton">
+                            Buscar recursos
+                        </span>
+                        <span>→</span>
+                    </button>
+
+                </div>
+
+
+                <div class="resource-filter-row">
+
+                    <label class="resource-filter-field">
+
+                        <span data-i18n="actorLabel">
+                            Tipo de organización
+                        </span>
+
+                        <select id="resourceActor">
+
+                            <option value="all" data-i18n="actorAll">
+                                Todos
+                            </option>
+
+                            <option value="association" data-i18n="actorAssociation">
+                                Asociación / ONG
+                            </option>
+
+                            <option value="cooperative" data-i18n="actorCooperative">
+                                Cooperativa
+                            </option>
+
+                            <option value="community" data-i18n="actorCommunity">
+                                Comunidad
+                            </option>
+
+                            <option value="social-enterprise" data-i18n="actorEnterprise">
+                                Empresa social
+                            </option>
+
+                            <option value="public" data-i18n="actorPublic">
+                                Entidad pública
+                            </option>
+
+                            <option value="project" data-i18n="actorProject">
+                                Proyecto en creación
+                            </option>
+
+                        </select>
+
+                    </label>
+
+
+                    <label class="resource-filter-field">
+
+                        <span data-i18n="scopeLabel">
+                            Ámbito
+                        </span>
+
+                        <select id="resourceScope">
+
+                            <option value="all" data-i18n="scopeAll">
+                                Mundial + territorio
+                            </option>
+
+                            <option value="global" data-i18n="scopeGlobal">
+                                Global
+                            </option>
+
+                            <option value="africa" data-i18n="scopeAfrica">
+                                África
+                            </option>
+
+                            <option value="europe" data-i18n="scopeEurope">
+                                Europa
+                            </option>
+
+                            <option value="local" data-i18n="scopeLocal">
+                                Priorizar territorio
+                            </option>
+
+                        </select>
+
+                    </label>
+
+
+                    <button
+                        id="resourceUseTerritory"
+                        class="resource-context-button"
+                        type="button"
+                    >
+                        ◎
+                        <span data-i18n="useCurrentTerritory">
+                            Usar territorio actual
+                        </span>
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="resource-category-grid">
+
+                <button
+                    class="resource-category-card tilt-card active"
+                    type="button"
+                    data-resource-category="all"
+                >
+                    <span class="resource-category-icon">✦</span>
+                    <strong data-i18n="categoryAll">Todo</strong>
+                    <small data-i18n="categoryAllDesc">Visión global</small>
+                    <span class="resource-category-count" data-resource-count="all">0</span>
+                </button>
+
+
+                <button
+                    class="resource-category-card tilt-card"
+                    type="button"
+                    data-resource-category="organizaciones"
+                >
+                    <span class="resource-category-icon">🏢</span>
+                    <strong data-i18n="categoryOrganizations">Organizaciones</strong>
+                    <small data-i18n="categoryOrganizationsDesc">Redes y aliados</small>
+                    <span class="resource-category-count" data-resource-count="organizaciones">0</span>
+                </button>
+
+
+                <button
+                    class="resource-category-card tilt-card"
+                    type="button"
+                    data-resource-category="formacion"
+                >
+                    <span class="resource-category-icon">🎓</span>
+                    <strong data-i18n="categoryTraining">Formación</strong>
+                    <small data-i18n="categoryTrainingDesc">Cursos y aprendizaje</small>
+                    <span class="resource-category-count" data-resource-count="formacion">0</span>
+                </button>
+
+
+                <button
+                    class="resource-category-card tilt-card"
+                    type="button"
+                    data-resource-category="financiacion"
+                >
+                    <span class="resource-category-icon">💰</span>
+                    <strong data-i18n="categoryFunding">Financiación</strong>
+                    <small data-i18n="categoryFundingDesc">Fondos y convocatorias</small>
+                    <span class="resource-category-count" data-resource-count="financiacion">0</span>
+                </button>
+
+
+                <button
+                    class="resource-category-card tilt-card"
+                    type="button"
+                    data-resource-category="proyectos"
+                >
+                    <span class="resource-category-icon">🌱</span>
+                    <strong data-i18n="categoryProjects">Proyectos y soluciones</strong>
+                    <small data-i18n="categoryProjectsDesc">Casos y modelos</small>
+                    <span class="resource-category-count" data-resource-count="proyectos">0</span>
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <section class="resource-intelligence-bar">
+
+            <div>
+                <span class="resource-live-dot"></span>
+
+                <span data-i18n="resourceEngine">
+                    Motor de recursos activo
+                </span>
+            </div>
+
+            <div class="resource-intelligence-tags">
+                <span>Territorio</span>
+                <span>Necesidad</span>
+                <span>Actor</span>
+                <span>Fiabilidad</span>
+                <span>Fuente</span>
+            </div>
+
+        </section>
+
+
+        <section class="resource-results-section">
+
+            <div class="resource-results-head">
+
+                <div>
+                    <span class="eyebrow" data-i18n="resultsKicker">
+                        RESULTADOS
+                    </span>
+
+                    <h2 id="resourceResultsTitle" data-i18n="resultsTitle">
+                        Recursos recomendados
+                    </h2>
+
+                    <p id="resourceResultsSummary">
+                        Catálogo inicial de fuentes y marcos útiles para organizaciones.
+                    </p>
+                </div>
+
+
+                <div class="resource-results-meta">
+
+                    <strong id="resourceResultCount">0</strong>
+
+                    <span data-i18n="resultsFound">
+                        resultados
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="resourceResults"
+                class="resource-results-grid"
+            ></div>
+
+
+            <div
+                id="resourceEmpty"
+                class="resource-empty hidden"
+            >
+                <span>⌕</span>
+
+                <h3 data-i18n="noResultsTitle">
+                    No encontramos coincidencias en el catálogo inicial.
+                </h3>
+
+                <p data-i18n="noResultsText">
+                    Prueba con términos más amplios o cambia los filtros.
+                </p>
+            </div>
+
+        </section>
+
+
+        <section class="resource-roadmap">
+
+            <article class="resource-roadmap-card tilt-card">
+
+                <span>🔎</span>
+
+                <div>
+                    <strong data-i18n="roadmapSearch">
+                        Próximo nivel: búsqueda viva
+                    </strong>
+
+                    <p data-i18n="roadmapSearchText">
+                        Conectaremos fuentes y buscadores externos para encontrar
+                        oportunidades actuales, no solo portales de referencia.
+                    </p>
+                </div>
+
+            </article>
+
+
+            <article class="resource-roadmap-card tilt-card">
+
+                <span>🧠</span>
+
+                <div>
+                    <strong data-i18n="roadmapAI">
+                        Relación necesidad → solución
+                    </strong>
+
+                    <p data-i18n="roadmapAIText">
+                        El motor podrá comparar necesidades con proyectos,
+                        organizaciones, formación y financiación pertinente.
+                    </p>
+                </div>
+
+            </article>
+
+
+            <article class="resource-roadmap-card tilt-card">
+
+                <span>🕸️</span>
+
+                <div>
+                    <strong data-i18n="roadmapNetwork">
+                        Red de actores y recursos
+                    </strong>
+
+                    <p data-i18n="roadmapNetworkText">
+                        Después añadiremos visualización de conexiones,
+                        contribuciones, capacidades y colaboración.
+                    </p>
+                </div>
+
+            </article>
+
+        </section>
+
+    </section>
+
+
+    <!-- ==================================================
+         CONOCIMIENTO
+         ================================================== -->
+    <section
+        id="vistaConocimiento"
+        class="app-view knowledge-view hidden"
+        aria-label="Centro de conocimiento"
+    >
+
+        <section class="ecosystem-command-panel">
+
+            <div class="ecosystem-title-grid">
+                <div>
+                    <span class="eyebrow">CENTRO DE CONOCIMIENTO</span>
+
+                    <h2>
+                        Ideas, libros, vídeos y documentos para comprender la transición
+                    </h2>
+
+                    <p>
+                        Una biblioteca organizada para no perderse entre cientos de enlaces.
+                        Cada material indica su tipo, idioma, procedencia y nivel de referencia.
+                    </p>
+                </div>
+
+                <button
+                    id="knowledgePlayIntro"
+                    class="ecosystem-feature-button"
+                    type="button"
+                >
+                    <span>▶</span>
+                    <div>
+                        <strong>Introducción al nuevo paradigma</strong>
+                        <small>Experiencia visual conceptual</small>
+                    </div>
+                </button>
+            </div>
+
+
+            <div class="knowledge-search-row">
+
+                <div class="knowledge-search-box">
+                    <span>⌕</span>
+                    <input
+                        id="knowledgeSearch"
+                        type="search"
+                        placeholder="Buscar: economía basada en recursos, BioHabitats, permacultura..."
+                        autocomplete="off"
+                    >
+                </div>
+
+                <select id="knowledgeType">
+                    <option value="all">Todos los formatos</option>
+                    <option value="documento">Documentos</option>
+                    <option value="libro">Libros</option>
+                    <option value="video">Vídeos</option>
+                </select>
+
+                <select id="knowledgeLanguage">
+                    <option value="all">Todos los idiomas</option>
+                    <option value="es">Español</option>
+                    <option value="en">English</option>
+                    <option value="fr">Français</option>
+                    <option value="pt">Português</option>
+                </select>
+
+            </div>
+
+
+            <div class="knowledge-topic-row">
+
+                <button class="knowledge-topic active" data-knowledge-topic="all" type="button">
+                    Todo
+                </button>
+
+                <button class="knowledge-topic" data-knowledge-topic="transicion" type="button">
+                    Transición
+                </button>
+
+                <button class="knowledge-topic" data-knowledge-topic="gobernanza" type="button">
+                    Gobernanza
+                </button>
+
+                <button class="knowledge-topic" data-knowledge-topic="economia" type="button">
+                    Economía
+                </button>
+
+                <button class="knowledge-topic" data-knowledge-topic="territorio" type="button">
+                    Territorio
+                </button>
+
+                <button class="knowledge-topic" data-knowledge-topic="ecologia" type="button">
+                    Ecología
+                </button>
+
+                <button class="knowledge-topic" data-knowledge-topic="tecnologia" type="button">
+                    Tecnología
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <section class="knowledge-stats-strip">
+
+            <div>
+                <strong id="knowledgeCount">0</strong>
+                <span>materiales</span>
+            </div>
+
+            <div>
+                <strong id="knowledgeDocsCount">0</strong>
+                <span>documentos base</span>
+            </div>
+
+            <div>
+                <strong id="knowledgeVideoCount">0</strong>
+                <span>vídeos</span>
+            </div>
+
+            <div>
+                <strong>4</strong>
+                <span>idiomas preparados</span>
+            </div>
+
+        </section>
+
+
+        <section class="ecosystem-content-panel">
+
+            <div class="ecosystem-section-head">
+                <div>
+                    <span class="eyebrow">BIBLIOTECA ESENCIAL</span>
+                    <h2>Materiales recomendados y documentos de referencia</h2>
+                </div>
+
+                <span class="ecosystem-method-tag">
+                    Concepto ≠ hecho operativo
+                </span>
+            </div>
+
+            <div
+                id="knowledgeGrid"
+                class="knowledge-grid"
+            ></div>
+
+            <div
+                id="knowledgeEmpty"
+                class="ecosystem-empty hidden"
+            >
+                <span>▤</span>
+                <strong>No hay coincidencias</strong>
+                <p>Prueba con otro tema, formato o idioma.</p>
+            </div>
+
+        </section>
+
+
+        <section class="knowledge-translation-panel">
+
+            <div class="translation-visual">
+                <span>🌐</span>
+                <div class="translation-ring ring-a"></div>
+                <div class="translation-ring ring-b"></div>
+            </div>
+
+            <div>
+                <span class="eyebrow">TRADUCCIÓN Y DIFUSIÓN</span>
+                <h3>Un mismo conocimiento, accesible en distintos idiomas</h3>
+                <p>
+                    La estructura está preparada para clasificar vídeo original,
+                    subtítulos, doblaje, transcripción y traducciones por idioma.
+                    No presentaremos una traducción como disponible hasta que exista realmente.
+                </p>
+            </div>
+
+            <button
+                class="ecosystem-outline-button"
+                type="button"
+                data-view-target="recursos"
+            >
+                Buscar formación →
+            </button>
+
+        </section>
+
+    </section>
+
+
+    <!-- ==================================================
+         RED DE PROYECTOS
+         ================================================== -->
+    <section
+        id="vistaProyectos"
+        class="app-view projects-network-view hidden"
+        aria-label="Red de proyectos"
+    >
+
+        <section class="ecosystem-command-panel projects-command-panel">
+
+            <div>
+                <span class="eyebrow">RED DISTRIBUIDA DE PROYECTOS</span>
+                <h2>Conectar experiencias para que una solución pueda viajar</h2>
+                <p>
+                    No se trata de centralizar todos los proyectos, sino de hacer visibles
+                    experiencias locales, aprendizajes, necesidades y formas de colaborar.
+                </p>
+            </div>
+
+            <div class="project-principles">
+                <span>🌍 Local + global</span>
+                <span>🤝 Colaboración</span>
+                <span>📊 Datos y resultados</span>
+                <span>🔁 Aprendizaje replicable</span>
+            </div>
+
+        </section>
+
+
+        <section class="project-map-layout">
+
+            <article class="ecosystem-content-panel project-map-panel">
+
+                <div class="ecosystem-section-head">
+                    <div>
+                        <span class="eyebrow">MAPA DE NODOS</span>
+                        <h2>Primeros casos de trabajo</h2>
+                    </div>
+
+                    <span class="ecosystem-method-tag">
+                        Ubicaciones aproximadas
+                    </span>
+                </div>
+
+                <div id="projectsMap"></div>
+
+                <div class="projects-map-legend">
+                    <span><i class="project-dot pilot"></i> Piloto / activo</span>
+                    <span><i class="project-dot idea"></i> Propuesta / preparación</span>
+                    <span><i class="project-dot future"></i> Caso futuro</span>
+                </div>
+
+            </article>
+
+
+            <article class="ecosystem-content-panel projects-side-panel">
+
+                <span class="eyebrow">CÓMO LEER ESTA RED</span>
+
+                <h3>Proyecto ≠ propaganda</h3>
+
+                <p>
+                    Cada ficha debe poder explicar qué intenta resolver, qué datos tiene,
+                    qué falta comprobar, quién participa y qué aprendizajes puede compartir.
+                </p>
+
+                <div class="project-rule">
+                    <span>01</span>
+                    <div>
+                        <strong>Problema concreto</strong>
+                        <small>Agua, agricultura, energía, educación, comunidad...</small>
+                    </div>
+                </div>
+
+                <div class="project-rule">
+                    <span>02</span>
+                    <div>
+                        <strong>Acción observable</strong>
+                        <small>Algo que se pueda hacer, medir o demostrar.</small>
+                    </div>
+                </div>
+
+                <div class="project-rule">
+                    <span>03</span>
+                    <div>
+                        <strong>Aprendizaje abierto</strong>
+                        <small>Éxitos, errores y datos vuelven a la red.</small>
+                    </div>
+                </div>
+
+                <button
+                    id="openProjectProposal"
+                    class="ecosystem-primary-button"
+                    type="button"
+                >
+                    + Proponer un proyecto
+                </button>
+
+            </article>
+
+        </section>
+
+
+        <section class="ecosystem-content-panel">
+
+            <div class="ecosystem-section-head">
+                <div>
+                    <span class="eyebrow">PROYECTOS CONECTADOS</span>
+                    <h2>Experiencias iniciales y casos de aplicación</h2>
+                </div>
+
+                <div class="project-filter-row">
+                    <button class="project-filter active" data-project-status="all" type="button">Todos</button>
+                    <button class="project-filter" data-project-status="pilot" type="button">Pilotos</button>
+                    <button class="project-filter" data-project-status="idea" type="button">Propuestas</button>
+                    <button class="project-filter" data-project-status="future" type="button">Futuros</button>
+                </div>
+            </div>
+
+            <div
+                id="projectsGrid"
+                class="projects-grid"
+            ></div>
+
+        </section>
+
+    </section>
+
+
+    <!-- ==================================================
+         ACCIÓN
+         ================================================== -->
+    <section
+        id="vistaAccion"
+        class="app-view action-view hidden"
+        aria-label="Laboratorio de acción pública"
+    >
+
+        <section class="ecosystem-command-panel action-command-panel">
+
+            <div>
+                <span class="eyebrow">LABORATORIO DE ACCIÓN</span>
+                <h2>Pasar de la conversación a una acción visible</h2>
+                <p>
+                    Ideas pequeñas, públicas y replicables que permitan explicar una alternativa
+                    mediante hechos, experiencias y demostraciones.
+                </p>
+            </div>
+
+            <div class="action-pulse" aria-hidden="true">
+                <div></div>
+                <div></div>
+                <span>✦</span>
+            </div>
+
+        </section>
+
+
+        <section class="action-generator-layout">
+
+            <article class="ecosystem-content-panel">
+
+                <div class="ecosystem-section-head">
+                    <div>
+                        <span class="eyebrow">GENERADOR DE ACCIÓN</span>
+                        <h2>¿Qué podemos organizar?</h2>
+                    </div>
+                </div>
+
+                <div class="action-generator-form">
+
+                    <label>
+                        <span>Objetivo</span>
+                        <select id="actionObjective">
+                            <option value="concienciar">Concienciar / explicar</option>
+                            <option value="demostrar">Demostrar una solución</option>
+                            <option value="conectar">Conectar personas</option>
+                            <option value="territorio">Mejorar un espacio local</option>
+                        </select>
+                    </label>
+
+                    <label>
+                        <span>Tamaño del grupo</span>
+                        <select id="actionGroup">
+                            <option value="small">2–5 personas</option>
+                            <option value="medium">6–20 personas</option>
+                            <option value="large">20+ personas</option>
+                        </select>
+                    </label>
+
+                    <label>
+                        <span>Entorno</span>
+                        <select id="actionPlace">
+                            <option value="street">Plaza / calle</option>
+                            <option value="indoor">Local / sala</option>
+                            <option value="nature">Parque / naturaleza</option>
+                            <option value="online">Online + presencial</option>
+                        </select>
+                    </label>
+
+                    <button
+                        id="generateAction"
+                        class="ecosystem-primary-button"
+                        type="button"
+                    >
+                        Generar idea →
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <article
+                id="actionRecommendation"
+                class="ecosystem-content-panel action-recommendation-panel"
+            >
+                <span class="eyebrow">PROPUESTA</span>
+
+                <div class="action-placeholder">
+                    <span>✦</span>
+                    <strong>Selecciona el contexto</strong>
+                    <p>El sistema propondrá una acción sencilla y una lista de materiales.</p>
+                </div>
+            </article>
+
+        </section>
+
+
+        <section class="ecosystem-content-panel">
+
+            <div class="ecosystem-section-head">
+                <div>
+                    <span class="eyebrow">IDEAS REPLICABLES</span>
+                    <h2>Acciones públicas de baja barrera de entrada</h2>
+                </div>
+            </div>
+
+            <div
+                id="actionIdeasGrid"
+                class="action-ideas-grid"
+            ></div>
+
+        </section>
+
+    </section>
+
+
+    <!-- ==================================================
+         MEDIATECA AUDIOVISUAL
+         ================================================== -->
+    <section
+        id="vistaMediateca"
+        class="app-view media-view hidden"
+        aria-label="Mediateca audiovisual"
+    >
+
+        <section class="media-command-panel">
+
+            <div class="media-command-copy">
+                <span class="eyebrow">MEDIATECA AUDIOVISUAL</span>
+                <h2>Contar la transición con imagen, voz y música</h2>
+                <p>
+                    Un espacio para preparar vídeos introductorios, piezas educativas,
+                    comparaciones y materiales traducibles sin mezclar recursos libres
+                    con contenidos cuyo permiso de reutilización no esté verificado.
+                </p>
+
+                <div class="media-command-actions">
+                    <button
+                        id="mediaOpenCinematic"
+                        class="ecosystem-primary-button"
+                        type="button"
+                    >
+                        ▶ Reproducir introducción
+                    </button>
+
+                    <button
+                        id="mediaNarrateLong"
+                        class="ecosystem-outline-button"
+                        type="button"
+                    >
+                        🔊 Escuchar locución larga
+                    </button>
+                </div>
+            </div>
+
+            <div class="media-orbital-visual" aria-hidden="true">
+                <div class="media-orbit media-orbit-a"></div>
+                <div class="media-orbit media-orbit-b"></div>
+                <div class="media-core">▶</div>
+                <span class="media-node node-a">🌱</span>
+                <span class="media-node node-b">🏙️</span>
+                <span class="media-node node-c">🤝</span>
+                <span class="media-node node-d">⚡</span>
+            </div>
+
+        </section>
+
+
+        <section class="media-layout">
+
+            <article class="media-stage-panel">
+
+                <div class="ecosystem-section-head">
+                    <div>
+                        <span class="eyebrow">GUIÓN PRINCIPAL</span>
+                        <h2>“Bienvenidos a una realidad diferente”</h2>
+                    </div>
+
+                    <span class="media-duration">
+                        ~4–5 min
+                    </span>
+                </div>
+
+                <div class="media-script-tabs">
+                    <button class="media-script-tab active" data-media-script="intro" type="button">
+                        Introducción
+                    </button>
+                    <button class="media-script-tab" data-media-script="venus" type="button">
+                        Comparación Venus
+                    </button>
+                    <button class="media-script-tab" data-media-script="projects" type="button">
+                        Proyectos conectados
+                    </button>
+                </div>
+
+                <div
+                    id="mediaScriptContent"
+                    class="media-script-content"
+                ></div>
+
+                <div class="media-narration-controls">
+
+                    <button
+                        id="mediaSpeakCurrent"
+                        type="button"
+                    >
+                        🔊 Narrar texto
+                    </button>
+
+                    <button
+                        id="mediaStopNarration"
+                        type="button"
+                    >
+                        ■ Detener voz
+                    </button>
+
+                    <label>
+                        <span>Velocidad</span>
+                        <input
+                            id="mediaNarrationRate"
+                            type="range"
+                            min="0.75"
+                            max="1.15"
+                            value="0.92"
+                            step="0.05"
+                        >
+                    </label>
+
+                </div>
+
+            </article>
+
+
+            <article class="media-soundtrack-panel">
+
+                <div class="ecosystem-section-head">
+                    <div>
+                        <span class="eyebrow">BANDA SONORA CINEMATOGRÁFICA</span>
+                        <h2>Música real con reducción automática bajo la voz</h2>
+                    </div>
+
+                    <span class="media-license-safe">
+                        ↘ Auto-duck de voz
+                    </span>
+                </div>
+
+                <p class="media-soundtrack-note">
+                    Las dos pistas aportadas están incorporadas directamente en la página.
+                    Cuando comienza una locución, la música baja suavemente de volumen
+                    y vuelve a subir al terminar para no cubrir la voz.
+                </p>
+
+                <div class="real-soundtrack-presets">
+
+                    <button
+                        class="real-soundtrack-card active"
+                        data-real-track="sutton"
+                        type="button"
+                    >
+                        <span class="real-track-icon">🎬</span>
+
+                        <span class="real-track-copy">
+                            <strong>Cinematic Dramatic Journey</strong>
+                            <small>Sutton · 5:04 · dramática / evolución</small>
+                        </span>
+
+                        <span class="real-track-check">✓</span>
+                    </button>
+
+                    <button
+                        class="real-soundtrack-card"
+                        data-real-track="tunetank"
+                        type="button"
+                    >
+                        <span class="real-track-icon">🌅</span>
+
+                        <span class="real-track-copy">
+                            <strong>Inspiring Cinematic Music</strong>
+                            <small>TuneTank · 2:12 · inspiradora / luminosa</small>
+                        </span>
+
+                        <span class="real-track-check">✓</span>
+                    </button>
+
+                </div>
+
+                <div class="soundtrack-controls">
+
+                    <button
+                        id="soundtrackToggle"
+                        class="ecosystem-primary-button"
+                        type="button"
+                    >
+                        ▶ Música
+                    </button>
+
+                    <label>
+                        <span>Volumen normal</span>
+                        <input
+                            id="soundtrackVolume"
+                            type="range"
+                            min="0"
+                            max="0.35"
+                            value="0.14"
+                            step="0.01"
+                        >
+                    </label>
+
+                    <label>
+                        <span>Volumen durante locución</span>
+                        <input
+                            id="soundtrackDuckLevel"
+                            type="range"
+                            min="0.12"
+                            max="0.60"
+                            value="0.30"
+                            step="0.02"
+                        >
+                    </label>
+
+                    <span
+                        id="soundtrackStatus"
+                        class="soundtrack-status"
+                    >
+                        Detenida
+                    </span>
+
+                </div>
+
+                <div class="music-rights-note">
+                    <span>ℹ</span>
+                    <p>
+                        Las pistas han sido aportadas para este proyecto.
+                        Antes de publicar la web de forma pública, conviene conservar
+                        la licencia o justificante de uso de cada archivo.
+                    </p>
+                </div>
+
+            </article>
+
+        </section>
+
+
+        <section class="media-comparison-panel">
+
+            <div class="ecosystem-section-head">
+                <div>
+                    <span class="eyebrow">PUNTO DE REFERENCIA</span>
+                    <h2>Comparación responsable con The Venus Project</h2>
+                </div>
+
+                <span class="media-reference-badge">
+                    Sin afirmar afiliación
+                </span>
+            </div>
+
+            <div class="venus-comparison-grid">
+
+                <article class="comparison-column venus">
+                    <span class="comparison-label">THE VENUS PROJECT</span>
+
+                    <div class="comparison-item">
+                        <strong>Economía basada en recursos</strong>
+                        <p>
+                            Propone un sistema socioeconómico global orientado al uso de recursos,
+                            ciencia y tecnología para elevar el nivel de vida.
+                        </p>
+                    </div>
+
+                    <div class="comparison-item">
+                        <strong>Diseño urbano integral</strong>
+                        <p>
+                            Sus ciudades circulares integran infraestructura, tecnología,
+                            eficiencia y grandes áreas verdes.
+                        </p>
+                    </div>
+
+                    <div class="comparison-item">
+                        <strong>Automatización y sistemas</strong>
+                        <p>
+                            La tecnología se plantea como parte de un rediseño integral,
+                            no solo como herramienta aislada.
+                        </p>
+                    </div>
+
+                    <div class="comparison-source-row">
+                        <a
+                            href="https://www.thevenusproject.com/resource-based-economy/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Economía basada en recursos ↗
+                        </a>
+
+                        <a
+                            href="https://www.thevenusproject.com/resource-based-economy/environment/circular-city/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Ciudades circulares ↗
+                        </a>
+                    </div>
+                </article>
+
+
+                <article class="comparison-column ours">
+                    <span class="comparison-label">RED GLOBAL DE SOLUCIONES</span>
+
+                    <div class="comparison-item">
+                        <strong>Transición desde territorios actuales</strong>
+                        <p>
+                            La plataforma parte de problemas existentes y busca conectar
+                            datos, recursos, organizaciones, aprendizaje y acciones realizables.
+                        </p>
+                    </div>
+
+                    <div class="comparison-item">
+                        <strong>Red distribuida de proyectos</strong>
+                        <p>
+                            No presupone una única ciudad modelo: permite comparar pilotos,
+                            propuestas y experiencias en lugares distintos.
+                        </p>
+                    </div>
+
+                    <div class="comparison-item">
+                        <strong>Verificación y trazabilidad</strong>
+                        <p>
+                            Se intenta separar dato confirmado, marco conceptual,
+                            información local y elementos todavía por verificar.
+                        </p>
+                    </div>
+
+                    <div class="comparison-difference">
+                        <strong>Relación</strong>
+                        <p>
+                            The Venus Project puede utilizarse como referencia comparativa.
+                            Esta plataforma no se presenta como parte, delegación ni representante
+                            de The Venus Project.
+                        </p>
+                    </div>
+                </article>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==================================================
+             VIDEOTECA THE VENUS PROJECT · EMBEBIDA
+             ================================================== -->
+        <section class="venus-video-panel">
+
+            <div class="ecosystem-section-head">
+                <div>
+                    <span class="eyebrow">VIDEOTECA · THE VENUS PROJECT</span>
+                    <h2>Ver documentales directamente en nuestra página</h2>
+                    <p class="venus-video-intro">
+                        Los vídeos se reproducen mediante el reproductor oficial de YouTube.
+                        No descargamos ni re-subimos los documentales.
+                    </p>
+                </div>
+
+                <span class="venus-embed-badge">
+                    ▶ YouTube embebido
+                </span>
+            </div>
+
+            <div class="venus-video-toolbar">
+
+                <div class="venus-documentary-switch">
+                    <button
+                        class="venus-documentary-button active"
+                        type="button"
+                        data-venus-documentary="choice"
+                    >
+                        The Choice is Ours
+                    </button>
+
+                    <button
+                        class="venus-documentary-button"
+                        type="button"
+                        data-venus-documentary="paradise"
+                    >
+                        Paradise or Oblivion
+                    </button>
+                </div>
+
+                <div class="venus-language-switch">
+                    <span>Idioma / versión</span>
+
+                    <button
+                        class="venus-language-button active"
+                        type="button"
+                        data-venus-language="en"
+                    >
+                        🇬🇧 EN
+                    </button>
+
+                    <button
+                        class="venus-language-button"
+                        type="button"
+                        data-venus-language="es"
+                    >
+                        🇪🇸 ES
+                    </button>
+
+                    <button
+                        class="venus-language-button"
+                        type="button"
+                        data-venus-language="fr"
+                    >
+                        🇫🇷 FR
+                    </button>
+                </div>
+
+            </div>
+
+            <div class="venus-video-layout">
+
+                <article class="venus-player-card">
+
+                    <div class="venus-player-shell">
+                        <div
+                            id="venusYoutubePlayer"
+                            class="venus-youtube-player"
+                        ></div>
+                    </div>
+
+                    <div class="venus-player-meta">
+                        <div>
+                            <span
+                                id="venusVideoStatus"
+                                class="venus-video-status"
+                            >
+                                Fuente oficial
+                            </span>
+
+                            <h3 id="venusVideoTitle">
+                                The Choice is Ours (2016)
+                            </h3>
+
+                            <p id="venusVideoSource">
+                                The Venus Project · versión oficial en inglés
+                            </p>
+                        </div>
+
+                        <a
+                            id="venusVideoOpenYoutube"
+                            class="venus-open-youtube"
+                            href="https://www.youtube.com/watch?v=Yb5ivvcTvRQ"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Abrir en YouTube ↗
+                        </a>
+                    </div>
+
+                </article>
+
+                <aside class="venus-video-info">
+
+                    <span class="eyebrow">CÓMO LO PRESENTAMOS</span>
+
+                    <h3 id="venusInfoHeading">
+                        Referencia audiovisual
+                    </h3>
+
+                    <p id="venusInfoText">
+                        Este documental se presenta como material de referencia
+                        para comprender las propuestas de The Venus Project.
+                    </p>
+
+                    <div class="venus-info-rule">
+                        <span>✓</span>
+                        <div>
+                            <strong>Se ve aquí mismo</strong>
+                            <small>
+                                El reproductor pertenece a YouTube y el vídeo permanece alojado allí.
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="venus-info-rule">
+                        <span>🌐</span>
+                        <div>
+                            <strong>Versiones por idioma</strong>
+                            <small>
+                                Inglés oficial y versiones subtituladas/traducidas encontradas en YouTube.
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="venus-info-rule">
+                        <span>ℹ</span>
+                        <div>
+                            <strong>Fuente claramente indicada</strong>
+                            <small>
+                                Las traducciones comunitarias no se etiquetan como oficiales si no lo son.
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="venus-video-copyright-note">
+                        <strong>Importante</strong>
+                        <p>
+                            Si un propietario desactiva la inserción de un vídeo,
+                            el reproductor puede dejar de funcionar; en ese caso se conserva
+                            el botón para abrirlo directamente en YouTube.
+                        </p>
+                    </div>
+
+                </aside>
+
+            </div>
+
+        </section>
+
+
+        <section class="media-library-panel">
+
+            <div class="ecosystem-section-head">
+                <div>
+                    <span class="eyebrow">BANCO VISUAL</span>
+                    <h2>Vídeos para construir el montaje</h2>
+                </div>
+
+                <span class="media-method-tag">
+                    Verificar licencia del recurso elegido
+                </span>
+            </div>
+
+            <div
+                id="freeVideoGrid"
+                class="free-video-grid"
+            ></div>
+
+        </section>
+
+
+        <section class="media-music-sources">
+
+            <article>
+                <span>🎵</span>
+                <div>
+                    <strong>Música externa: solo con licencia clara</strong>
+                    <p>
+                        Para una banda sonora definitiva podemos buscar pistas ambientales
+                        o cinematográficas en bibliotecas que permitan reutilización.
+                        Se debe conservar la página/licencia concreta de la pista elegida.
+                    </p>
+                </div>
+            </article>
+
+            <a
+                href="https://pixabay.com/music/search/cinematic/"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Explorar música cinematográfica ↗
+            </a>
+
+        </section>
+
+    </section>
+
+
+</main>
+
+
+
+
+
+
+<!-- ======================================================
+     REPRODUCTOR DE FONDO · SIEMPRE DISPONIBLE
+     ====================================================== -->
+<div
+    id="backgroundMusicDock"
+    class="background-music-dock"
+    aria-label="Música de fondo"
+>
+    <button
+        id="musicDockToggle"
+        class="music-dock-play"
+        type="button"
+        aria-label="Reproducir o detener música de fondo"
+        title="Música de fondo"
+    >
+        ▶
+    </button>
+
+    <div class="music-dock-info">
+        <strong id="musicDockTitle">Cinematic Journey</strong>
+        <small id="musicDockState">Música de fondo</small>
+    </div>
+
+    <button
+        id="musicDockNext"
+        class="music-dock-next"
+        type="button"
+        aria-label="Cambiar pista"
+        title="Cambiar pista"
+    >
+        ⇄
+    </button>
+</div>
+
+<!-- ======================================================
+     CONTACTO FLOTANTE · SIEMPRE DISPONIBLE
+     ====================================================== -->
+<a
+    class="floating-contact-button"
+    href="mailto:Amigosypintores@gmail.com?subject=Informaci%C3%B3n%20sobre%20Red%20Global%20de%20Soluciones&body=Hola%2C%0A%0AMe%20gustar%C3%ADa%20recibir%20m%C3%A1s%20informaci%C3%B3n%20sobre%20la%20Red%20Global%20de%20Soluciones.%0A%0AGracias."
+    aria-label="Contactar con el grupo por correo electrónico"
+    title="Contactar con el grupo: Amigosypintores@gmail.com"
+>
+    <span
+        class="floating-contact-icon"
+        aria-hidden="true"
+    >
+        ✉
+    </span>
+
+    <span class="floating-contact-copy">
+        <strong>Contacto</strong>
+        <small>Más información</small>
+    </span>
+
+    <span
+        class="floating-contact-pulse"
+        aria-hidden="true"
+    ></span>
+</a>
+
+
+<!-- ======================================================
+     EXPERIENCIA CINEMATOGRÁFICA CONCEPTUAL
+     ====================================================== -->
+<div
+    id="cinematicIntro"
+    class="cinematic-modal hidden"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Introducción conceptual"
+>
+
+    <div class="cinematic-shell">
+
+        <button
+            id="closeCinematicIntro"
+            class="cinematic-close"
+            type="button"
+            aria-label="Cerrar"
+        >
+            ×
+        </button>
+
+
+        <div id="cinematicScene" class="cinematic-scene scene-chaos">
+
+            <div class="cinematic-noise"></div>
+            <div class="cinematic-horizon"></div>
+
+            <div class="cinematic-city city-chaos">
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span>
+            </div>
+
+            <div class="cinematic-trees">
+                <i>♣</i><i>♣</i><i>♣</i><i>♣</i><i>♣</i><i>♣</i><i>♣</i>
+            </div>
+
+            <div class="cinematic-city city-future">
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span>
+            </div>
+
+            <div class="cinematic-people">
+                <i>●</i><i>●</i><i>●</i><i>●</i><i>●</i>
+            </div>
+
+            <div class="cinematic-copy">
+
+                <span id="cinematicKicker">
+                    ESCENA 01 · UNA REALIDAD CONOCIDA
+                </span>
+
+                <h2 id="cinematicTitle">
+                    ¿Y si pudiéramos diseñar algo diferente?
+                </h2>
+
+                <p id="cinematicText">
+                    Antes de imaginar otro futuro, hay que ser capaces de verlo.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="cinematic-controls">
+
+            <button id="cinematicPrev" type="button">←</button>
+
+            <div class="cinematic-progress">
+                <button class="cinematic-dot active" data-scene-index="0" type="button"></button>
+                <button class="cinematic-dot" data-scene-index="1" type="button"></button>
+                <button class="cinematic-dot" data-scene-index="2" type="button"></button>
+                <button class="cinematic-dot" data-scene-index="3" type="button"></button>
+            </div>
+
+            <button id="cinematicNext" type="button">→</button>
+
+            <button
+                id="cinematicNarrate"
+                class="cinematic-narrate"
+                type="button"
+                title="Narrar con la voz del navegador"
+            >
+                🔊 Narración
+            </button>
+
+            <button
+                id="cinematicAuto"
+                class="cinematic-auto"
+                type="button"
+            >
+                ▶ Reproducir
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ======================================================
+     PROPONER PROYECTO · BORRADOR LOCAL
+     ====================================================== -->
+<div
+    id="projectProposalModal"
+    class="ecosystem-modal hidden"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Proponer proyecto"
+>
+    <div class="ecosystem-modal-card">
+
+        <button
+            id="closeProjectProposal"
+            class="ecosystem-modal-close"
+            type="button"
+        >
+            ×
+        </button>
+
+        <span class="eyebrow">BORRADOR LOCAL</span>
+        <h2>Proponer un proyecto</h2>
+
+        <p class="ecosystem-modal-note">
+            Esta versión guarda el borrador únicamente en este navegador.
+            No se publica todavía en una base de datos externa.
+        </p>
+
+        <form id="projectProposalForm">
+
+            <label>
+                <span>Nombre del proyecto</span>
+                <input id="proposalName" required maxlength="90">
+            </label>
+
+            <label>
+                <span>Territorio / país</span>
+                <input id="proposalPlace" required maxlength="100">
+            </label>
+
+            <label>
+                <span>Problema que intenta resolver</span>
+                <textarea id="proposalProblem" required maxlength="500"></textarea>
+            </label>
+
+            <label>
+                <span>Acción o solución propuesta</span>
+                <textarea id="proposalSolution" required maxlength="500"></textarea>
+            </label>
+
+            <button
+                class="ecosystem-primary-button"
+                type="submit"
+            >
+                Guardar borrador
+            </button>
+
+        </form>
+
+        <div
+            id="proposalSaved"
+            class="proposal-saved hidden"
+        >
+            ✓ Borrador guardado en este navegador.
+        </div>
+
+    </div>
+</div>
+
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.js"></script>
+<script src="script.js"></script>
+<script src="clima.js"></script>
+<script src="agua.js"></script>
+<script src="hidrogeologia.js"></script>
+<script src="diagnostico.js"></script>
+<script src="recursos.js"></script>
+<script src="ecosistema.js"></script>
+<script src="https://www.youtube.com/iframe_api"></script>
+<script src="venus-videos.js"></script>
+<script src="audiovisual.js"></script>
+<script src="idiomas.js"></script>
+<script src="efectos.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+RED GLOBAL DE SOLUCIONES · V6.10
+VIDEOTECA THE VENUS PROJECT EMBEBIDA
+
+OBJETIVO
+Permitir que visitantes vean vídeos de The Venus Project
+DIRECTAMENTE dentro de nuestra propia página, sin descargar
+ni re-subir los documentales.
+
+TECNOLOGÍA
+- YouTube IFrame Player API.
+- El vídeo sigue alojado y servido por YouTube.
+- Reproductor 16:9 dentro de Mediateca.
+- Botón alternativo “Abrir en YouTube”.
+
+DOCUMENTALES
+1. The Choice is Ours (2016)
+   EN: The Venus Project · oficial
+   ES: versión/traducción encontrada en YouTube
+   FR: The Venus Project France
+
+2. Paradise or Oblivion
+   EN: The Venus Project · oficial
+   ES: versión subtitulada/traducida encontrada en YouTube
+   FR: The Venus Project France
+
+IMPORTANTE
+- Las versiones ES comunitarias NO se presentan como oficiales.
+- The Venus Project France se identifica por su canal/fuente.
+- Si YouTube o el propietario desactiva la inserción,
+  el vídeo puede dejar de reproducirse en nuestra web.
+  El enlace “Abrir en YouTube” permanece disponible.
+
+IDIOMAS
+- Al cambiar la interfaz a ES, FR o EN, la videoteca intenta
+  seleccionar automáticamente la versión correspondiente.
+- Para PT no se fuerza una versión no verificada.
+
+MÚSICA DE FONDO
+- Si un vídeo de YouTube empieza a reproducirse, la música
+  ambiental propia de la página se detiene para no interferir.
+- Cuando el vídeo se pausa o termina, la música puede retomarse.
+
+FUENTES UTILIZADAS
+- Página oficial de documentales de The Venus Project.
+- YouTube para las versiones embebidas.
+
+PRUEBA
+1. Abrir V6.10 con Live Server.
+2. Ir a Mediateca.
+3. Bajar hasta “Videoteca · The Venus Project”.
+4. Probar The Choice is Ours.
+5. Cambiar EN → ES → FR.
+6. Probar Paradise or Oblivion.
+7. Comprobar que el vídeo se reproduce dentro de la página.
+8. Si una versión tiene embedding bloqueado, usar “Abrir en YouTube”.

@@ -1,0 +1,86 @@
+RED GLOBAL DE SOLUCIONES · V7.0
+QUALITÉ PREMIUM STABLE
+
+Cette version applique les bonnes idées proposées tout en conservant
+la compatibilité avec les versions V6.7–V6.10.
+
+1. TRADUCTION
+- Nouveau namespace: window.RGS.i18n
+- Nouvelle clé de stockage: rgs-ui-lang-v3
+- Migration douce depuis rgs-ui-lang-v2 et rgs-ui-lang
+- ES / FR / EN / PT conservés
+- t(key) accepte:
+  * anciennes clés plates: navTerritory
+  * futures clés imbriquées: errors.retry
+- Fallback espagnol si une future traduction manque
+- MutationObserver: les éléments dynamiques avec data-i18n sont traduits
+  même s'ils sont ajoutés après le chargement
+- Support ajouté pour:
+  * data-i18n
+  * data-i18n-placeholder
+  * data-i18n-title
+  * data-i18n-aria-label
+- Événement V7: rgs:languageChanged
+- Événement V6 conservé: idioma:actualizado
+  -> important pour ne pas casser la vidéothèque Venus
+- Audit des clés manquantes dans la console
+- window.aplicarIdiomaUI reste disponible pour compatibilité
+
+2. TOASTS
+- window.RGS.showToast(message, type, duration)
+- Types: info / success / warning / error
+- Pas d'innerHTML avec message externe: textContent est utilisé
+- Accessible via aria-live
+- Toast ajouté lors de la sauvegarde d'un brouillon projet
+- Toast en cas d'erreur de module
+- Toast lors d'un changement de langue
+
+3. COHÉRENCE VISUELLE
+- Style premium commun aux principales cartes
+- Hover cohérent
+- Micro-animation de chargement
+- Utilitaire .rgs-skeleton disponible pour les futurs composants
+- Respect de prefers-reduced-motion
+
+4. LEAFLET / MÉMOIRE
+- Nettoyage centralisé des couches
+- clearLayers() si disponible
+- Recréation de la couche si nécessaire
+- Suppression propre du marqueur principal et du cercle
+- Références mises à null avant recréation
+- preferCanvas activé pour la carte
+- invalidateSize déclenché de manière plus légère
+
+5. ROBUSTESSE DES MODULES
+- Agua: wrapper try/catch global
+- Diagnóstico: wrapper try/catch global
+- Hidrogeología: wrapper try/catch global
+- Clima: catch existant conservé + toast global
+- Erreur graphique commune avec bouton Reintentar
+
+CORRECTIONS PAR RAPPORT AU CODE PROPOSÉ
+- La syntaxe CSS correcte est .rgs-card:hover
+  et non .rgs-card\:hover
+- On ne remplace pas l'événement idioma:actualizado sans compatibilité,
+  car la vidéothèque Venus l'utilise déjà
+- La migration conserve le choix de langue V6.7 au lieu de le perdre
+- Les toasts utilisent textContent pour éviter une injection HTML
+- Le dictionnaire existant n'a pas été supprimé
+
+IMPORTANT
+Cette V7.0 rend le MOTEUR de traduction beaucoup plus robuste.
+Elle ne prétend pas encore que tous les textes historiques et dynamiques
+de chaque module ont été traduits en 4 langues. Les éléments marqués
+data-i18n sont gérés de manière robuste; une phase suivante pourra
+internationaliser le contenu fixe restant.
+
+TESTS
+1. F5
+2. ES -> FR -> EN -> PT -> F5
+3. Vérifier que la langue reste mémorisée
+4. Revenir en ES
+5. Analyser plusieurs territoires successivement
+6. Ouvrir Agua, Clima, Hidrogeología et Diagnóstico
+7. Ouvrir Mediateca -> vidéos Venus
+8. Changer de langue et vérifier que la vidéothèque suit
+9. Sauvegarder un brouillon projet et vérifier le toast

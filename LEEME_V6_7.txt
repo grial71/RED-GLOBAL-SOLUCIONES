@@ -1,0 +1,43 @@
+RED GLOBAL DE SOLUCIONES · V6.7
+CORRECCIÓN DEL TRADUCTOR
+
+PROBLEMA CORREGIDO
+En versiones anteriores, el idioma FR podía quedar almacenado en la
+clave antigua de localStorage y reaparecer después de cambiar de idioma.
+
+SOLUCIÓN
+- Nueva clave de idioma: rgs-ui-lang-v2
+- Se elimina la antigua clave rgs-ui-lang
+- V6.7 arranca por primera vez en Español para limpiar el estado antiguo
+- Al cambiar a ES / FR / EN / PT:
+  * cambia inmediatamente la interfaz integrada
+  * se guarda la elección
+  * se añade ?lang=xx a la URL local
+  * el idioma elegido permanece después de F5
+- El idioma activo aparece marcado con ✓
+- Los eventos de idioma usan delegación, evitando que se pierdan
+  si algún módulo vuelve a renderizar elementos.
+
+GOOGLE TRANSLATE
+- Los idiomas DE / IT / AR / 中文 / 日本語 / हिन्दी / RU / NL
+  están claramente marcados como TRADUCCIÓN EXTERNA.
+- Abren una nueva pestaña.
+- No cambian ni sobrescriben el idioma interno de la página.
+- En una web pública se pasa directamente la URL actual a Google Translate.
+- En localhost se informa de que Google no puede traducir automáticamente
+  una dirección 127.0.0.1 / localhost.
+
+PRUEBA
+1. Sustituir TODOS los archivos por V6.7.
+2. Abrir con Live Server.
+3. Pulsar F5.
+4. Debe arrancar en ES.
+5. Seleccionar FR → debe mostrar FR y el botón FR debe tener ✓.
+6. Seleccionar EN → debe permanecer EN.
+7. Pulsar F5 → debe continuar EN.
+8. Seleccionar ES → pulsar F5 → debe continuar ES.
+
+NOTA
+La traducción integrada actual cubre principalmente la interfaz marcada
+con data-i18n. Algunas secciones nuevas todavía contienen textos fijos
+en español; eso es una ampliación posterior distinta de este bug de estado.

@@ -1,0 +1,59 @@
+RED GLOBAL DE SOLUCIONES · V6.8
+MÚSICA REAL + AUTO-DUCK + PROMPT META AI
+
+MÚSICAS INCORPORADAS
+1. Cinematic Dramatic Journey · Sutton · 5:04
+2. Inspiring Cinematic Music · TuneTank · 2:12
+
+ARCHIVOS
+/audio/sutton-cinematic-journey.mp3
+/audio/tunetank-inspiring-cinematic.mp3
+
+COMPORTAMIENTO
+- Música en bucle.
+- Reproductor flotante permanente abajo a la izquierda.
+- Botón de contacto sigue abajo a la derecha.
+- El botón ⇄ cambia entre las dos pistas.
+- En Mediateca se puede elegir cualquiera de las dos.
+- Control de volumen normal.
+- Control de cuánto baja la música durante la voz.
+- Valor inicial: música al 14%.
+- Durante locución: baja automáticamente aproximadamente al 30%
+  del volumen seleccionado.
+- Bajada suave: ~0,5 s.
+- Recuperación suave: ~0,9 s.
+- Funciona tanto con la locución larga de Mediateca como con la
+  narración de la presentación cinematográfica.
+
+AUTOPLAY
+Los navegadores modernos impiden iniciar audio automáticamente sin
+una interacción del usuario. Por eso la música comienza al pulsar
+▶ Música, el reproductor flotante, o al iniciar una locución
+cinematográfica mediante una acción del usuario.
+
+DERECHOS
+Los dos MP3 fueron aportados para este proyecto.
+Antes de publicar la web en Internet, conservar la licencia o prueba
+de permiso correspondiente a cada pista.
+
+PROMPT META
+Se incluye:
+PROMPT_META_AI_VIDEO.txt
+
+Contiene:
+- prompt maestro
+- 6 prompts por escena
+- transición ciudad actual → barrera verde → ciudad regenerativa
+- referencia conceptual a The Venus Project sin copiar sus diseños
+- instrucciones para generar vídeo sin texto/logos/voz
+
+PRUEBA
+1. Sustituir todos los archivos por V6.8.
+2. No olvidar la carpeta /audio.
+3. F5.
+4. Pulsar ▶ en el reproductor inferior izquierdo.
+5. Cambiar pista con ⇄.
+6. Ir a Mediateca.
+7. Pulsar Narrar texto.
+8. Comprobar que la música baja durante la voz y vuelve a subir.
+9. Probar también “Ver visión” → Narración.
