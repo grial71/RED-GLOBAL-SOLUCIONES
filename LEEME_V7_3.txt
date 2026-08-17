@@ -1,0 +1,73 @@
+RED GLOBAL DE SOLUCIONES · V7.3
+EFECTOS PREMIUM 3D OPTIMIZADOS
+
+INTEGRACIÓN REALIZADA
+He integrado las ideas propuestas, pero sin duplicar sistemas que ya existían.
+
+IMPORTANTE
+La V7.2 ya tenía:
+- partículas/red en networkCanvas
+- red ambiental global en pageAmbientCanvas
+- tilt 3D
+- reveal con IntersectionObserver
+- prefers-reduced-motion
+
+Por eso NO se añadió un tercer canvas de 100 partículas.
+Eso habría duplicado requestAnimationFrame, aumentado consumo en móvil
+y creado conflicto visual con pageAmbientCanvas.
+
+MEJORAS V7.3
+1. Hero con parallax 3D selectivo
+   - red profunda
+   - contenido medio
+   - orbe en capa cercana
+   - no se aplica en touch
+
+2. Glow dinámico
+   - sigue el puntero de forma suave
+   - respiración luminosa lenta
+   - se pausa con reduced motion
+
+3. Tilt mejorado
+   - reaprovecha activarTilt() existente
+   - ahora se aplica también a Agua, Clima, Hidrogeología,
+     Diagnóstico, Recursos, Conocimiento y Proyectos
+   - WeakSet evita listeners duplicados
+
+4. Reveal escalonado
+   - reutiliza IntersectionObserver
+   - retrasos dinámicos con --rgs-reveal-delay
+   - sin múltiples setTimeout por cada cambio de vista
+
+5. Vídeo ambiental
+   - try/catch alrededor de play()
+   - catch del Promise si el navegador bloquea autoplay
+
+6. Diagnóstico
+   - window.appState se inicializa antes de escribir meteorologia
+   - evita errores si el estado todavía no existe
+
+7. Rendimiento
+   - no se crea un canvas adicional
+   - transform/opacity para animaciones
+   - reduced motion
+   - efectos táctiles limitados
+   - glow pausado cuando la pestaña está oculta
+
+CORRECCIÓN IMPORTANTE DE LA PROPUESTA RECIBIDA
+El código sugerido creaba:
+- otro sistema de partículas
+- otro sistema de tilt
+- otro sistema de reveal
+
+La plataforma ya tenía esos tres sistemas.
+V7.3 los amplía en lugar de duplicarlos.
+
+PRUEBAS
+1. Abrir con Live Server.
+2. Mover ratón en el hero: red/orbe deben tener profundidad suave.
+3. Pasar ratón sobre tarjetas: tilt ligero.
+4. Cambiar Territorio / Recursos / Conocimiento / Proyectos.
+5. Las tarjetas deben entrar con efecto cascada.
+6. Probar música + locución George.
+7. Probar en móvil: no debe haber parallax agresivo.

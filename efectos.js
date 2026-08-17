@@ -526,7 +526,7 @@ function prepararReveal() {
 
     document
         .querySelectorAll(
-            ".reveal-on-scroll, .resource-result-card, .resource-roadmap-card"
+            ".reveal-on-scroll, .resource-result-card, .resource-roadmap-card, .rgs-reveal"
         )
         .forEach(
             elemento => {
@@ -544,13 +544,55 @@ function prepararReveal() {
 // ======================================================
 
 function refrescarEfectos() {
+    const tiltSelector =
+        [
+            ".tilt-card",
+            ".rgs-card",
+            ".water-card",
+            ".metric-card",
+            ".hydro-card",
+            ".smart-signal-card",
+            ".resource-result-card",
+            ".resource-roadmap-card",
+            ".knowledge-card",
+            ".project-card",
+            ".action-idea-card",
+            ".free-video-card"
+        ].join(",");
+
+
     document
         .querySelectorAll(
-            ".tilt-card"
+            tiltSelector
         )
         .forEach(
             activarTilt
         );
+
+
+    document
+        .querySelectorAll(
+            tiltSelector
+        )
+        .forEach(
+            (
+                elemento,
+                indice
+            ) => {
+                elemento.classList.add(
+                    "rgs-reveal"
+                );
+
+                elemento.style.setProperty(
+                    "--rgs-reveal-delay",
+                    `${Math.min(
+                        indice % 6,
+                        5
+                    ) * 55}ms`
+                );
+            }
+        );
+
 
     prepararReveal();
 }
@@ -1019,15 +1061,32 @@ function configurarVideoAmbiental() {
                 globalBackgroundVideo.pause();
             }
             else {
-                globalBackgroundVideo.play()
-                    .catch(
-                        () => {
-                            /*
-                              Si el navegador bloquea autoplay,
-                              se conserva el poster como fondo.
-                            */
-                        }
+                try {
+                    const playPromise =
+                        globalBackgroundVideo.play();
+
+                    if (
+                        playPromise
+                        &&
+                        typeof playPromise.catch ===
+                            "function"
+                    ) {
+                        playPromise.catch(
+                            error => {
+                                console.debug(
+                                    "RGS · vídeo ambiental bloqueado:",
+                                    error
+                                );
+                            }
+                        );
+                    }
+                }
+                catch (error) {
+                    console.debug(
+                        "RGS · vídeo ambiental no iniciado:",
+                        error
                     );
+                }
             }
         };
 
@@ -1049,4 +1108,228 @@ function configurarVideoAmbiental() {
 
 
 configurarVideoAmbiental();
+
+
+
+// ======================================================
+// V7.3 · PARALLAX HERO + GLOW DINÁMICO
+// Integrado sobre los sistemas de partículas/tilt ya existentes
+// ======================================================
+
+(function initHeroParallaxPremium() {
+    const hero =
+        document.getElementById(
+            "parallax-hero"
+        );
+
+    if (!hero) {
+        return;
+    }
+
+
+    const reducedMotion =
+        window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        );
+
+
+    const layers =
+        hero.querySelectorAll(
+            ".parallax-layer"
+        );
+
+    const glow =
+        hero.querySelector(
+            ".hero-glow-dynamic"
+        );
+
+
+    let frame =
+        null;
+
+
+    function resetHeroParallax() {
+        layers.forEach(
+            layer => {
+                layer.style.removeProperty(
+                    "--parallax-x"
+                );
+
+                layer.style.removeProperty(
+                    "--parallax-y"
+                );
+            }
+        );
+
+
+        glow
+            ?.style
+            .setProperty(
+                "--glow-x",
+                "50%"
+            );
+
+        glow
+            ?.style
+            .setProperty(
+                "--glow-y",
+                "42%"
+            );
+    }
+
+
+    function handlePointerMove(
+        event
+    ) {
+        if (
+            reducedMotion.matches
+            ||
+            event.pointerType ===
+                "touch"
+        ) {
+            return;
+        }
+
+
+        const rect =
+            hero.getBoundingClientRect();
+
+
+        const x =
+            (
+                event.clientX -
+                rect.left
+            )
+            /
+            rect.width
+            -
+            .5;
+
+
+        const y =
+            (
+                event.clientY -
+                rect.top
+            )
+            /
+            rect.height
+            -
+            .5;
+
+
+        if (frame) {
+            cancelAnimationFrame(
+                frame
+            );
+        }
+
+
+        frame =
+            requestAnimationFrame(
+                () => {
+                    layers.forEach(
+                        layer => {
+                            const depth =
+                                Number(
+                                    layer.dataset
+                                        .depth
+                                    ||
+                                    .12
+                                );
+
+
+                            layer.style.setProperty(
+                                "--parallax-x",
+                                `${x * depth * 34}px`
+                            );
+
+
+                            layer.style.setProperty(
+                                "--parallax-y",
+                                `${y * depth * 28}px`
+                            );
+                        }
+                    );
+
+
+                    glow
+                        ?.style
+                        .setProperty(
+                            "--glow-x",
+                            `${(
+                                x +
+                                .5
+                            ) * 100}%`
+                        );
+
+
+                    glow
+                        ?.style
+                        .setProperty(
+                            "--glow-y",
+                            `${(
+                                y +
+                                .5
+                            ) * 100}%`
+                        );
+                }
+            );
+    }
+
+
+    hero.addEventListener(
+        "pointermove",
+        handlePointerMove,
+        {
+            passive:
+                true
+        }
+    );
+
+
+    hero.addEventListener(
+        "pointerleave",
+        resetHeroParallax
+    );
+
+
+    reducedMotion.addEventListener
+        ?.(
+            "change",
+            () => {
+                if (
+                    reducedMotion.matches
+                ) {
+                    resetHeroParallax();
+                }
+            }
+        );
+})();
+
+
+// ======================================================
+// V7.3 · RAF PAUSA CUANDO LA PÁGINA NO ES VISIBLE
+// ======================================================
+
+document.addEventListener(
+    "visibilitychange",
+    () => {
+        if (
+            document.hidden
+        ) {
+            document.documentElement
+                .classList
+                .add(
+                    "rgs-page-hidden"
+                );
+        }
+        else {
+            document.documentElement
+                .classList
+                .remove(
+                    "rgs-page-hidden"
+                );
+        }
+    }
+);
 

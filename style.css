@@ -8134,3 +8134,406 @@ body::after {
     }
 }
 
+
+
+/* ======================================================
+   V7.2 · AUDIO / LOCUCIÓN CORREGIDOS
+   ====================================================== */
+
+.media-narration-status {
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    min-height:
+        30px;
+
+    padding:
+        0 9px;
+
+    border:
+        1px solid
+        rgba(174, 208, 211, .58);
+
+    border-radius:
+        999px;
+
+    background:
+        rgba(239, 248, 248, .79);
+
+    color:
+        #5f767f;
+
+    font-size:
+        .51rem;
+}
+
+
+#mediaSpeakCurrent:disabled,
+#mediaNarrateLong:disabled,
+#mediaStopNarration:disabled {
+    opacity:
+        .48;
+
+    cursor:
+        not-allowed;
+}
+
+
+
+/* ======================================================
+   V7.3 · EFECTOS PREMIUM 3D OPTIMIZADOS
+   ====================================================== */
+
+
+/* ------------------------------------------------------
+   HERO PARALLAX
+   ------------------------------------------------------ */
+
+#parallax-hero {
+    perspective:
+        1200px;
+
+    transform-style:
+        preserve-3d;
+
+    isolation:
+        isolate;
+}
+
+
+.parallax-layer {
+    --parallax-x:
+        0px;
+
+    --parallax-y:
+        0px;
+
+    transform:
+        translate3d(
+            var(--parallax-x),
+            var(--parallax-y),
+            0
+        );
+
+    transition:
+        transform .22s
+        cubic-bezier(
+            .2,
+            .7,
+            .25,
+            1
+        );
+
+    will-change:
+        transform;
+}
+
+
+.parallax-deep {
+    z-index:
+        0;
+}
+
+
+.parallax-mid {
+    z-index:
+        2;
+}
+
+
+.parallax-close {
+    z-index:
+        4;
+}
+
+
+/* ------------------------------------------------------
+   GLOW DINÁMICO
+   ------------------------------------------------------ */
+
+.hero-glow-dynamic {
+    --glow-x:
+        50%;
+
+    --glow-y:
+        42%;
+
+    position:
+        absolute;
+
+    inset:
+        -12%;
+
+    z-index:
+        0;
+
+    pointer-events:
+        none;
+
+    background:
+        radial-gradient(
+            circle at
+            var(--glow-x)
+            var(--glow-y),
+            rgba(97, 237, 210, .18) 0%,
+            rgba(70, 148, 235, .10) 22%,
+            transparent 58%
+        );
+
+    filter:
+        blur(7px);
+
+    animation:
+        rgsGlowBreath
+        9s
+        ease-in-out
+        infinite alternate;
+
+    will-change:
+        opacity,
+        transform;
+}
+
+
+@keyframes rgsGlowBreath {
+    from {
+        opacity:
+            .68;
+
+        transform:
+            scale(1);
+    }
+
+    to {
+        opacity:
+            1;
+
+        transform:
+            scale(1.06);
+    }
+}
+
+
+/* ------------------------------------------------------
+   TILT PREMIUM SOBRE EL SISTEMA EXISTENTE
+   ------------------------------------------------------ */
+
+:is(
+    .rgs-card,
+    .water-card,
+    .metric-card,
+    .hydro-card,
+    .smart-signal-card,
+    .resource-result-card,
+    .resource-roadmap-card,
+    .knowledge-card,
+    .project-card,
+    .action-idea-card,
+    .free-video-card
+) {
+    transform-style:
+        preserve-3d;
+
+    backface-visibility:
+        hidden;
+
+    will-change:
+        transform;
+
+    transition:
+        transform .20s
+        cubic-bezier(
+            .22,
+            .75,
+            .28,
+            1
+        ),
+        box-shadow .20s ease,
+        border-color .20s ease;
+}
+
+
+:is(
+    .rgs-card,
+    .water-card,
+    .metric-card,
+    .hydro-card,
+    .smart-signal-card,
+    .resource-result-card,
+    .resource-roadmap-card,
+    .knowledge-card,
+    .project-card,
+    .action-idea-card,
+    .free-video-card
+):hover {
+    box-shadow:
+        0 18px 40px
+        rgba(0, 24, 36, .15);
+
+    border-color:
+        rgba(120, 190, 180, .60);
+}
+
+
+/* ------------------------------------------------------
+   REVEAL ESCALONADO
+   ------------------------------------------------------ */
+
+.rgs-reveal {
+    opacity:
+        0;
+
+    transform:
+        translate3d(
+            0,
+            14px,
+            0
+        )
+        scale(.985);
+
+    transition:
+        opacity .48s ease
+        var(
+            --rgs-reveal-delay,
+            0ms
+        ),
+        transform .48s
+        cubic-bezier(
+            .22,
+            .7,
+            .25,
+            1
+        )
+        var(
+            --rgs-reveal-delay,
+            0ms
+        );
+}
+
+
+.rgs-reveal.is-visible {
+    opacity:
+        1;
+
+    transform:
+        translate3d(
+            0,
+            0,
+            0
+        )
+        scale(1);
+}
+
+
+/*
+  Si une carte reçoit ensuite un transform inline de tilt,
+  l'opacité reste indépendante et la carte demeure visible.
+*/
+.rgs-reveal.is-visible[style*="transform"] {
+    opacity:
+        1;
+}
+
+
+/* ------------------------------------------------------
+   PERFORMANCE / ACCESSIBILITÉ
+   ------------------------------------------------------ */
+
+.rgs-page-hidden
+.hero-glow-dynamic {
+    animation-play-state:
+        paused;
+}
+
+
+@media (
+    hover:
+        none
+) {
+    .parallax-layer {
+        transform:
+            none !important;
+    }
+
+
+    :is(
+        .rgs-card,
+        .water-card,
+        .metric-card,
+        .hydro-card,
+        .smart-signal-card,
+        .resource-result-card,
+        .resource-roadmap-card,
+        .knowledge-card,
+        .project-card,
+        .action-idea-card,
+        .free-video-card
+    ) {
+        will-change:
+            auto;
+    }
+}
+
+
+@media (
+    prefers-reduced-motion:
+        reduce
+) {
+    .hero-glow-dynamic {
+        animation:
+            none !important;
+
+        transform:
+            none !important;
+    }
+
+
+    .parallax-layer {
+        transform:
+            none !important;
+
+        transition:
+            none !important;
+    }
+
+
+    .rgs-reveal,
+    .rgs-reveal.is-visible {
+        opacity:
+            1 !important;
+
+        transform:
+            none !important;
+
+        transition:
+            none !important;
+    }
+
+
+    :is(
+        .rgs-card,
+        .water-card,
+        .metric-card,
+        .hydro-card,
+        .smart-signal-card,
+        .resource-result-card,
+        .resource-roadmap-card,
+        .knowledge-card,
+        .project-card,
+        .action-idea-card,
+        .free-video-card
+    ) {
+        transform:
+            none !important;
+
+        transition:
+            none !important;
+
+        will-change:
+            auto;
+    }
+}
+

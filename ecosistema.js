@@ -1567,6 +1567,10 @@ function closeCinematic() {
         ?.cancel();
 
     window.RGSMedia
+        ?.stopMainNarration
+        ?.();
+
+    window.RGSMedia
         ?.duckSoundtrack(
             false
         );
@@ -1725,75 +1729,15 @@ document
     ?.addEventListener(
         "click",
         () => {
-            if (
-                !("speechSynthesis" in window)
-            ) {
-                return;
-            }
-
-            window.speechSynthesis
-                .cancel();
-
-
-            const scene =
-                CINEMATIC_SCENES[
-                    currentScene
-                ];
-
-
-            const utterance =
-                new SpeechSynthesisUtterance(
-                    scene.narration
-                );
-
-            utterance.lang =
-                "es-ES";
-
-            utterance.rate =
-                .92;
-
-            utterance.pitch =
-                1;
-
-
-            if (
-                window.RGSMedia
-                &&
-                !window.RGSMedia
-                    .isPlaying
-            ) {
-                window.RGSMedia
-                    .startSoundtrack();
-            }
-
-
+            /*
+              V7.2:
+              misma locución MP3 en ordenador y móvil.
+              Ya no usamos la voz TTS del sistema.
+            */
             window.RGSMedia
-                ?.duckSoundtrack(
-                    true
-                );
-
-
-            utterance.onend =
-                () => {
-                    window.RGSMedia
-                        ?.duckSoundtrack(
-                            false
-                        );
-                };
-
-
-            utterance.onerror =
-                () => {
-                    window.RGSMedia
-                        ?.duckSoundtrack(
-                            false
-                        );
-                };
-
-
-            window.speechSynthesis
-                .speak(
-                    utterance
+                ?.toggleMainNarration
+                ?.(
+                    false
                 );
         }
     );

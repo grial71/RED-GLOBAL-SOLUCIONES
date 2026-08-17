@@ -167,93 +167,351 @@ document
 
 
 // ======================================================
-// NARRACIÓN
+// NARRACIÓN · V7.2 MP3 FIJA
 // ======================================================
 
-function speakCurrentMediaScript() {
-    if (
-        !("speechSynthesis" in window)
-    ) {
-        return;
+const MAIN_NARRATION = {
+    file:
+        "audio/locucion-principal-george-es.mp3",
+
+    label:
+        "George · Warm, Captivating Storyteller",
+
+    language:
+        "es-ES"
+};
+
+
+const mainNarrationAudio =
+    new Audio(
+        MAIN_NARRATION.file
+    );
+
+
+mainNarrationAudio.preload =
+    "metadata";
+
+mainNarrationAudio.crossOrigin =
+    "anonymous";
+
+mainNarrationAudio.playsInline =
+    true;
+
+
+let mainNarrationPlaying =
+    false;
+
+
+function updateMainNarrationUI(
+    customStatus = null
+) {
+    const speakButton =
+        document.getElementById(
+            "mediaSpeakCurrent"
+        );
+
+    const longButton =
+        document.getElementById(
+            "mediaNarrateLong"
+        );
+
+    const stopButton =
+        document.getElementById(
+            "mediaStopNarration"
+        );
+
+
+    if (speakButton) {
+        speakButton.textContent =
+            mainNarrationPlaying
+                ?
+                "⏸ Pausar locución"
+                :
+                "▶ Escuchar locución";
     }
 
-    window.speechSynthesis
-        .cancel();
+
+    if (longButton) {
+        longButton.textContent =
+            mainNarrationPlaying
+                ?
+                "⏸ Pausar presentación"
+                :
+                "▶ Escuchar presentación";
+    }
 
 
-    const script =
-        MEDIA_SCRIPTS[
-            currentMediaScript
-        ];
+    if (stopButton) {
+        stopButton.disabled =
+            !mainNarrationPlaying
+            &&
+            mainNarrationAudio.currentTime ===
+                0;
+    }
 
 
-    const utterance =
-        new SpeechSynthesisUtterance(
-            script.paragraphs.join(
-                "\n\n"
-            )
+    const status =
+        document.getElementById(
+            "mediaNarrationStatus"
         );
 
 
-    utterance.lang =
-        "es-ES";
-
-
-    const rate =
-        Number(
-            document
-                .getElementById(
-                    "mediaNarrationRate"
-                )
-                ?.value
+    if (status) {
+        status.textContent =
+            customStatus
             ||
-            .92
-        );
+            (
+                mainNarrationPlaying
+                    ?
+                    "George · locución en reproducción"
+                    :
+                    "George · locución preparada"
+            );
+    }
+}
 
 
-    utterance.rate =
-        rate;
+function startMainNarration(
+    restart = false
+) {
+    /*
+      La reproducción se llama DIRECTAMENTE desde el clic del usuario.
+      Así evitamos perder el gesto de usuario y los bloqueos de audio.
+    */
+    window.speechSynthesis
+        ?.cancel();
 
-    utterance.pitch =
-        .98;
+
+    if (
+        restart
+        ||
+        (
+            Number.isFinite(
+                mainNarrationAudio.duration
+            )
+            &&
+            mainNarrationAudio.currentTime >=
+                mainNarrationAudio.duration -
+                .35
+        )
+    ) {
+        mainNarrationAudio.currentTime =
+            0;
+    }
 
 
-    // Baja un poco la música mientras habla.
+    /*
+      Si la música está parada, la arrancamos desde el mismo clic.
+      Si está activa, solo aplicamos duck.
+    */
+    if (
+        !soundtrackPlaying
+    ) {
+        startSoundtrack();
+    }
+
+
     duckSoundtrack(
         true
     );
 
 
-    utterance.onend =
-        () => {
-            duckSoundtrack(
-                false
+    const playPromise =
+        mainNarrationAudio.play();
+
+
+    if (
+        playPromise
+        &&
+        typeof playPromise.then ===
+            "function"
+    ) {
+        playPromise
+            .then(
+                () => {
+                    mainNarrationPlaying =
+                        true;
+
+                    updateMainNarrationUI();
+                }
+            )
+            .catch(
+                error => {
+                    mainNarrationPlaying =
+                        false;
+
+                    duckSoundtrack(
+                        false
+                    );
+
+                    console.warn(
+                        "RGS · locución MP3:",
+                        error
+                    );
+
+                    window.RGS
+                        ?.showToast
+                        ?.(
+                            "El navegador bloqueó la locución. Pulsa de nuevo el botón.",
+                            "warning",
+                            4200
+                        );
+
+                    updateMainNarrationUI(
+                        "Pulsa de nuevo para iniciar"
+                    );
+                }
             );
-        };
-
-
-    utterance.onerror =
-        () => {
-            duckSoundtrack(
-                false
-            );
-        };
-
-
-    window.speechSynthesis
-        .speak(
-            utterance
-        );
+    }
 }
 
 
+function pauseMainNarration() {
+    mainNarrationAudio.pause();
+
+    mainNarrationPlaying =
+        false;
+
+    duckSoundtrack(
+        false
+    );
+
+    updateMainNarrationUI();
+}
+
+
+function stopMainNarration() {
+    mainNarrationAudio.pause();
+
+    mainNarrationAudio.currentTime =
+        0;
+
+    mainNarrationPlaying =
+        false;
+
+    duckSoundtrack(
+        false
+    );
+
+    updateMainNarrationUI(
+        "George · locución detenida"
+    );
+}
+
+
+function toggleMainNarration(
+    restart = false
+) {
+    if (
+        mainNarrationPlaying
+        &&
+        !restart
+    ) {
+        pauseMainNarration();
+        return;
+    }
+
+
+    startMainNarration(
+        restart
+    );
+}
+
+
+mainNarrationAudio.addEventListener(
+    "play",
+    () => {
+        mainNarrationPlaying =
+            true;
+
+        duckSoundtrack(
+            true
+        );
+
+        updateMainNarrationUI();
+    }
+);
+
+
+mainNarrationAudio.addEventListener(
+    "pause",
+    () => {
+        if (
+            mainNarrationAudio.ended
+        ) {
+            return;
+        }
+
+        mainNarrationPlaying =
+            false;
+
+        duckSoundtrack(
+            false
+        );
+
+        updateMainNarrationUI();
+    }
+);
+
+
+mainNarrationAudio.addEventListener(
+    "ended",
+    () => {
+        mainNarrationPlaying =
+            false;
+
+        duckSoundtrack(
+            false
+        );
+
+        updateMainNarrationUI(
+            "Locución terminada"
+        );
+    }
+);
+
+
+mainNarrationAudio.addEventListener(
+    "error",
+    () => {
+        mainNarrationPlaying =
+            false;
+
+        duckSoundtrack(
+            false
+        );
+
+        window.RGS
+            ?.showToast
+            ?.(
+                "No se pudo cargar la locución MP3.",
+                "error",
+                5000
+            );
+
+        updateMainNarrationUI(
+            "Error al cargar la locución"
+        );
+    }
+);
+
+
+/*
+  IMPORTANTE:
+  cada botón tiene UN SOLO listener.
+  En V7.1 podían quedar listeners duplicados o referencias rotas.
+*/
 document
     .getElementById(
         "mediaSpeakCurrent"
     )
     ?.addEventListener(
         "click",
-        speakCurrentMediaScript
+        () => {
+            toggleMainNarration(
+                false
+            );
+        }
     );
 
 
@@ -284,11 +542,8 @@ document
 
             renderMediaScript();
 
-            startSoundtrack();
-
-            setTimeout(
-                speakCurrentMediaScript,
-                250
+            toggleMainNarration(
+                false
             );
         }
     );
@@ -301,14 +556,24 @@ document
     ?.addEventListener(
         "click",
         () => {
-            window.speechSynthesis
-                ?.cancel();
-
-            duckSoundtrack(
-                false
-            );
+            stopMainNarration();
         }
     );
+
+
+function speakCurrentMediaScript() {
+    /*
+      Alias de compatibilidad:
+      todos los módulos antiguos que llamen esta función
+      reproducen ahora el MP3 fijo.
+    */
+    toggleMainNarration(
+        false
+    );
+}
+
+
+updateMainNarrationUI();
 
 
 // ======================================================
@@ -1239,8 +1504,16 @@ window.RGSMedia = {
     duckSoundtrack,
     selectRealTrack,
     speakCurrentMediaScript,
+    startMainNarration,
+    pauseMainNarration,
+    stopMainNarration,
+    toggleMainNarration,
 
     get isPlaying() {
         return soundtrackPlaying;
+    },
+
+    get isNarrating() {
+        return mainNarrationPlaying;
     }
 };

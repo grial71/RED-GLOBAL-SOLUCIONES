@@ -249,6 +249,11 @@ async function obtenerMeteoDiagnostico(
         const datos =
             await respuesta.json();
 
+        window.appState =
+            window.appState
+            ||
+            {};
+
         window.appState.meteorologia =
             datos;
 
@@ -1271,6 +1276,11 @@ async function cargarModuloDiagnosticoInterno() {
         ?.addEventListener(
             "click",
             function () {
+
+                window.appState =
+                    window.appState
+                    ||
+                    {};
 
                 window.appState.meteorologia =
                     null;

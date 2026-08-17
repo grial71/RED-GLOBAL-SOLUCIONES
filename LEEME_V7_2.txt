@@ -1,0 +1,45 @@
+RED GLOBAL DE SOLUCIONES · V7.2
+CORRECCIÓN AUDIO / LOCUCIÓN
+
+FALLO IDENTIFICADO EN V7.1
+La integración anterior de la locución MP3 sustituyó accidentalmente
+una zona demasiado grande de audiovisual.js. Como resultado, quedaron
+referencias a startSoundtrack(), duckSoundtrack(), selectRealTrack(), etc.
+pero se había eliminado la implementación real de esas funciones.
+
+Eso explica por qué:
+- los MP3 funcionaban al abrirlos directamente;
+- pero los botones Música / Locución de la web no arrancaban.
+
+V7.2
+- Parte de la V7.0 estable.
+- Mantiene íntegro el motor de música V6.8/V7.0.
+- Añade la locución George sin eliminar ninguna función musical.
+- Cada botón de audio tiene un único listener.
+- La locución se llama directamente desde el clic del usuario,
+  evitando perder el gesto de usuario del navegador.
+- Música + locución se sincronizan:
+  música normal -> locución -> duck -> final/pausa -> volumen normal.
+- La narración cinematográfica usa también el MP3 fijo.
+- No depende de SpeechSynthesis para la presentación principal.
+
+ARCHIVOS
+audio/locucion-principal-george-es.mp3
+audio/sutton-cinematic-journey.mp3
+audio/tunetank-inspiring-cinematic.mp3
+
+NOTA VS CODE
+La letra M que aparece junto a audiovisual.js, ecosistema.js o style.css
+significa "Modified" en Git. No es un error.
+En la captura de VS Code se veían 0 errores y 0 advertencias.
+
+PRUEBA
+1. Sustituir todos los archivos por V7.2.
+2. Abrir con Live Server.
+3. Pulsar el reproductor flotante de música.
+4. Cambiar pista con ⇄.
+5. Ir a Mediateca.
+6. Pulsar Escuchar presentación.
+7. Debe arrancar George y la música debe bajar.
+8. Pausar -> música recupera volumen.
+9. Detener -> locución vuelve a 0.
