@@ -368,6 +368,11 @@ function onVenusPlayerStateChange(
         event.data ===
         YT.PlayerState.PLAYING
     ) {
+        window.RGSProjectVideo
+            ?.pause
+            ?.();
+
+
         if (
             window.RGSMedia
             &&
@@ -601,3 +606,22 @@ document.addEventListener(
 
 updateVenusMeta();
 
+
+
+// ======================================================
+// V7.4 · API PÚBLICA DE COORDINACIÓN
+// ======================================================
+
+window.RGSVenus = {
+    pause() {
+        if (
+            venusPlayer
+            &&
+            typeof venusPlayer
+                .pauseVideo ===
+                "function"
+        ) {
+            venusPlayer.pauseVideo();
+        }
+    }
+};

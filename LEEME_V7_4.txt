@@ -1,0 +1,58 @@
+RED GLOBAL DE SOLUCIONES · V7.4
+VIDEO PRESENTACIÓN YOUTUBE INTEGRADO
+
+NUEVO
+Se incorpora la presentación audiovisual del proyecto publicada en:
+https://www.youtube.com/watch?v=KLNSvJhX-m4
+
+UBICACIÓN
+Mediateca -> Presentación audiovisual
+
+FUNCIONAMIENTO
+- El vídeo se ve directamente dentro de Red Global de Soluciones.
+- Se usa el reproductor oficial de YouTube mediante IFrame Player API.
+- El vídeo NO se descarga ni se duplica dentro del repositorio.
+- Se conserva un botón alternativo “Abrir en YouTube”.
+
+SINCRONIZACIÓN AUDIO
+Cuando empieza el vídeo:
+- se detiene la música ambiental de la web;
+- se pausa la locución George si estaba activa;
+- se pausa un documental de The Venus Project si estaba reproduciéndose.
+
+Cuando el vídeo se pausa o termina:
+- si la música ambiental estaba sonando antes, puede volver a iniciarse.
+
+COORDINACIÓN CON VENUS
+- Si se inicia un documental de The Venus Project,
+  se pausa el vídeo de presentación de Red Global.
+- Se evita que dos reproductores YouTube suenen simultáneamente.
+
+IDIOMAS
+La nueva sección tiene traducción controlada en:
+- ES
+- FR
+- EN
+- PT
+
+ARCHIVO NUEVO
+project-video.js
+
+NO AUMENTA EL PESO DEL REPOSITORIO CON EL VÍDEO
+El vídeo sigue alojado en YouTube.
+
+VS CODE
+1. Sustituye TODOS los archivos anteriores por esta V7.4.
+2. Abre la carpeta completa con VS Code.
+3. Ejecuta con Live Server.
+4. Ve a Mediateca.
+5. Pulsa “Ver presentación del proyecto”.
+6. Reproduce el vídeo.
+7. Comprueba que la música de la web no se solapa.
+8. Prueba ES / FR / EN / PT.
+
+GITHUB
+Después de probar:
+git add .
+git commit -m "V7.4 video presentacion YouTube integrado"
+git push origin main

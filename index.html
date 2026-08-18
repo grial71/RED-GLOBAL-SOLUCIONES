@@ -1490,8 +1490,17 @@
 
                 <div class="media-command-actions">
                     <button
-                        id="mediaOpenCinematic"
+                        id="mediaOpenProjectVideo"
                         class="ecosystem-primary-button"
+                        type="button"
+                        data-i18n="projectVideoButton"
+                    >
+                        🎬 Ver presentación del proyecto
+                    </button>
+
+                    <button
+                        id="mediaOpenCinematic"
+                        class="ecosystem-outline-button"
                         type="button"
                     >
                         ▶ Reproducir introducción
@@ -1515,6 +1524,95 @@
                 <span class="media-node node-b">🏙️</span>
                 <span class="media-node node-c">🤝</span>
                 <span class="media-node node-d">⚡</span>
+            </div>
+
+        </section>
+
+
+        <!-- ==================================================
+             V7.4 · PRESENTACIÓN OFICIAL DEL PROYECTO
+             ================================================== -->
+        <section
+            id="projectPresentationVideo"
+            class="project-video-feature rgs-reveal"
+            aria-label="Presentación audiovisual de Red Global de Soluciones"
+        >
+
+            <div class="project-video-copy">
+
+                <div class="ecosystem-section-head">
+                    <div>
+                        <span
+                            class="eyebrow"
+                            data-i18n="projectVideoKicker"
+                        >
+                            PRESENTACIÓN AUDIOVISUAL
+                        </span>
+
+                        <h2 data-i18n="projectVideoTitle">
+                            Conoce Red Global de Soluciones en vídeo
+                        </h2>
+                    </div>
+
+                    <span
+                        id="projectVideoStatus"
+                        class="project-video-badge"
+                        data-i18n="projectVideoBadge"
+                    >
+                        ▶ YouTube · vídeo del proyecto
+                    </span>
+                </div>
+
+                <p
+                    class="project-video-description"
+                    data-i18n="projectVideoDescription"
+                >
+                    Una presentación audiovisual de la visión, los objetivos y
+                    el enfoque de Red Global de Soluciones.
+                </p>
+
+                <div class="project-video-actions">
+                    <a
+                        class="project-video-youtube-link"
+                        href="https://www.youtube.com/watch?v=KLNSvJhX-m4"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        data-i18n="projectVideoOpenYoutube"
+                    >
+                        Abrir en YouTube ↗
+                    </a>
+                </div>
+
+            </div>
+
+
+            <div class="project-video-player-card">
+
+                <div class="project-video-player-shell">
+                    <div
+                        id="projectYoutubePlayer"
+                        class="project-youtube-player"
+                    ></div>
+                </div>
+
+                <div class="project-video-footer">
+
+                    <div>
+                        <strong data-i18n="projectVideoFooterTitle">
+                            Presentación de Red Global de Soluciones
+                        </strong>
+
+                        <small data-i18n="projectVideoFooterText">
+                            El vídeo se reproduce desde YouTube sin duplicarlo en la web.
+                        </small>
+                    </div>
+
+                    <span class="project-video-source">
+                        youtube.com
+                    </span>
+
+                </div>
+
             </div>
 
         </section>
@@ -2271,6 +2369,7 @@
 <script src="ecosistema.js"></script>
 <script src="https://www.youtube.com/iframe_api"></script>
 <script src="venus-videos.js"></script>
+<script src="project-video.js"></script>
 <script src="audiovisual.js"></script>
 <script src="idiomas.js"></script>
 <script src="efectos.js"></script>
