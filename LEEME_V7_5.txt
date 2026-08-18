@@ -1,0 +1,62 @@
+RED GLOBAL DE SOLUCIONES · V7.5
+IMPULSOR / INICIATIVA CONECTADA
+
+NUEVO
+Se incorpora una presentación visual de:
+Aprende, Comparte, Crea y Cuida
+
+Canal:
+https://www.youtube.com/@aprendecompartecreaycuida
+
+UBICACIÓN
+Mediateca, inmediatamente después del vídeo de presentación
+de Red Global de Soluciones.
+
+PRESENTACIÓN
+La sección reconoce esta iniciativa como una referencia que impulsa:
+- aprendizaje compartido
+- cooperación
+- conexión entre personas y colectivos
+- acción local
+- cuidado del entorno
+- intercambio de herramientas y conocimientos
+- experimentación de alternativas en distintos territorios
+
+PRINCIPIO VISUAL
+Aprender → Compartir → Crear → Cuidar
+
+RELACIÓN CON RED GLOBAL
+Se presenta una afinidad de enfoque:
+aprender → compartir → conectar → experimentar → actuar
+→ evaluar → volver a compartir
+
+IMPORTANTE
+La sección no afirma una relación jurídica, institucional u organizativa
+formal entre Red Global de Soluciones y el canal.
+La presentación se basa en el contexto aportado para este proyecto.
+
+IDIOMAS
+Nueva sección disponible mediante el sistema i18n en:
+- ES
+- FR
+- EN
+- PT
+
+DISEÑO
+- tarjeta premium azul/verde
+- núcleo ACCC
+- órbitas animadas
+- nodos Aprender / Compartir / Crear / Cuidar
+- botón directo al canal YouTube
+- responsive móvil
+- prefers-reduced-motion compatible
+
+VS CODE
+Sustituye TODOS los archivos anteriores por esta V7.5.
+Después abre con Live Server y entra en Mediateca.
+
+GITHUB
+Después de verificar:
+git add .
+git commit -m "V7.5 iniciativa Aprende Comparte Crea y Cuida"
+git push origin main
